@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour {
     // MOVES THE PLAYER LEFT
     private void MoveLeft() {
         if (on_ground) {
-            rb.AddForce(t.right * speed * forward_bonus_speed);
+            rb.AddForce(-t.right * speed * forward_bonus_speed);
         } else {
             rb.AddForce(-t.right * speed * forward_bonus_speed * air_movement_percentage);
         }
