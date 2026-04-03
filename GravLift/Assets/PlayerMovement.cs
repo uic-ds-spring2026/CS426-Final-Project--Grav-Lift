@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float bullet_bloom;
     [SerializeField] private int[] bullet_damages = {10, 12, 14, 16, 18, 20, 23, 26, 29, 32};
     [SerializeField] private float interactionDistance;
+    [SerializeField] private float air_movement_percentage = 0.1f;
     //public Slider health_slider;
     //public float rotationSpeed = 45f;
     int framesPressed = 0;
@@ -129,23 +130,35 @@ public class PlayerMovement : MonoBehaviour {
         if (on_ground) {
             rb.AddForce(t.forward * speed * forward_bonus_speed);
         } else {
-            //rb.AddForce(t.forward * speed * forward_bonus_speed * air_movement_percentage);
+            rb.AddForce(t.forward * speed * forward_bonus_speed * air_movement_percentage);
         }
     }
 
     // MOVES THE PLAYER LEFT
     private void MoveLeft() {
-        rb.AddForce(-t.right * speed);
+        if (on_ground) {
+            rb.AddForce(t.right * speed * forward_bonus_speed);
+        } else {
+            rb.AddForce(-t.right * speed * forward_bonus_speed * air_movement_percentage);
+        }
     }
 
     // MOVES THE PLAYER BACKWARD
     private void MoveBackward() {
-        rb.AddForce(-t.forward * speed);
+        if (on_ground) {
+            rb.AddForce(-t.forward * speed * forward_bonus_speed);
+        } else {
+            rb.AddForce(-t.forward * speed * forward_bonus_speed * air_movement_percentage);
+        }
     }
 
     // MOVES THE PLAYER RIGHT
     private void MoveRight() {
-        rb.AddForce(t.right * speed);
+        if (on_ground) {
+            rb.AddForce(t.right * speed * forward_bonus_speed);
+        } else {
+            rb.AddForce(t.right * speed * forward_bonus_speed * air_movement_percentage);
+        }
     }
 
     // MOVES THE PLAYER UP
