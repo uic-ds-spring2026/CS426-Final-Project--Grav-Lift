@@ -23,13 +23,14 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float bullet_bloom;
     [SerializeField] private int[] bullet_damages = {10, 12, 14, 16, 18, 20, 23, 26, 29, 32};
     [SerializeField] private float interactionDistance;
-    [SerializeField] private float air_movement_percentage = 0.1f;
+    [SerializeField] private float air_movement_percentage;
     //public Slider health_slider;
     //public float rotationSpeed = 45f;
     int framesPressed = 0;
 
     public GameObject cannon;
     public GameObject bullet;
+    private Animator animation;
 
     public int health = 100;
     private float rotation_x = 0.0f;
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         t = GetComponent<Transform>();
         health = max_health;
+        animation = GetComponent<Animator>();
     }
 
 
@@ -86,6 +88,12 @@ public class PlayerMovement : MonoBehaviour {
             Aim();
         } else if (player_camera != null) {
             StopAiming();
+        }
+
+        if (Keyboard.current != null && Keyboard.current.bKey.isPressed) {
+            animation.Play("Dancing");
+        } else {
+            animation.Play("Idle");
         }
     }
 
