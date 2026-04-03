@@ -129,7 +129,7 @@ public class PlayerMovement : MonoBehaviour {
         if (on_ground) {
             rb.AddForce(t.forward * speed * forward_bonus_speed);
         } else {
-            rb.AddForce(t.forward * speed * forward_bonus_speed * air_movement_percentage);
+            //rb.AddForce(t.forward * speed * forward_bonus_speed * air_movement_percentage);
         }
     }
 
