@@ -75,15 +75,9 @@ public class TurretPlayerTracking : MonoBehaviour
     {
         Vector3 dir = player.position - turret.position;
 
-        if (dir.sqrMagnitude < 0.001f) return;
-
-        Quaternion targetRot = Quaternion.LookRotation(dir);
-
-        turret.rotation = Quaternion.Slerp(
-            turret.rotation,
-            targetRot,
-            rotationSpeed * Time.deltaTime
-        );
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(turret.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
+        turret.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
     }
 
     bool IsAimedAtPlayer(float angleThreshold)
