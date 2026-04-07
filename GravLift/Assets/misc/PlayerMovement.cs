@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour {
                                        || Keyboard.current.aKey.isPressed
                                        || Keyboard.current.sKey.isPressed
                                        || Keyboard.current.dKey.isPressed)) {
-            animation.Play("Walking");
+            animation.Play("Running");
         } else if (Keyboard.current != null && Keyboard.current.bKey.isPressed) {
             animation.Play("Dancing");
         } else {
