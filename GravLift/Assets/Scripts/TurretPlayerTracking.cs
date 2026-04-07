@@ -57,7 +57,7 @@ public class TurretPlayerTracking : MonoBehaviour
             case State.Tracking:
                 TrackPlayer();
 
-                if (IsAimedAtPlayer())
+                if (IsAimedAtPlayer(5f)) // strict to start firing
                     currentState = State.Firing;
                 break;
 
@@ -65,7 +65,7 @@ public class TurretPlayerTracking : MonoBehaviour
                 TrackPlayer();
                 Fire();
 
-                if (!IsAimedAtPlayer())
+                if (!IsAimedAtPlayer(10f)) // looser to stay firing
                     currentState = State.Tracking;
                 break;
         }
@@ -73,13 +73,11 @@ public class TurretPlayerTracking : MonoBehaviour
 
     void TrackPlayer()
     {
-        Vector3 lookPos = player.position;
-        lookPos.y = turret.position.y;
+        Vector3 dir = player.position - turret.position;
 
-        Vector3 dir = (lookPos - turret.position).normalized;
+        if (dir.sqrMagnitude < 0.001f) return;
 
-        // the prefab barrel faces the X axis which sucks so it needs to rotate -90 on y axis
-        Quaternion targetRot = Quaternion.LookRotation(dir) * Quaternion.Euler(0, -90, 0);
+        Quaternion targetRot = Quaternion.LookRotation(dir);
 
         turret.rotation = Quaternion.Slerp(
             turret.rotation,
@@ -88,14 +86,11 @@ public class TurretPlayerTracking : MonoBehaviour
         );
     }
 
-    bool IsAimedAtPlayer()
+    bool IsAimedAtPlayer(float angleThreshold)
     {
-        Vector3 dirToPlayer = (player.position - turret.position).normalized;
-
-        // use turret.right because barrel faces X axis
-        float angle = Vector3.Angle(turret.right, dirToPlayer);
-
-        return angle < fireAngle;
+        Vector3 dirToPlayer = (player.position - firePoint.position).normalized;
+        float angle = Vector3.Angle(firePoint.forward, dirToPlayer);
+        return angle < angleThreshold;
     }
 
     void Fire()
@@ -105,7 +100,7 @@ public class TurretPlayerTracking : MonoBehaviour
         if (fireCooldown <= 0f)
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            fireCooldown = 10f / fireRate;
+            fireCooldown = 1f / fireRate;
         }
     }
 }
