@@ -57,21 +57,23 @@ public class PlayerMovement : MonoBehaviour {
         // WASD
         if (Keyboard.current != null && Keyboard.current.wKey.isPressed) {
             MoveForward();
-            animation.Play("Walking");
-        } if (Keyboard.current != null && Keyboard.current.aKey.isPressed) {
+        }
+        if (Keyboard.current != null && Keyboard.current.aKey.isPressed) {
             MoveLeft();
-            animation.Play("Walking");
-        } if (Keyboard.current != null && Keyboard.current.sKey.isPressed) {
+        }
+        if (Keyboard.current != null && Keyboard.current.sKey.isPressed) {
             MoveBackward();
-            animation.Play("Walking");
-        } if (Keyboard.current != null && Keyboard.current.dKey.isPressed) {
+        }
+        if (Keyboard.current != null && Keyboard.current.dKey.isPressed) {
             MoveRight();
-            animation.Play("Walking");
-        } if (Keyboard.current != null && !Keyboard.current.wKey.isPressed
+        }
+        if (Keyboard.current != null && !Keyboard.current.wKey.isPressed
                                        && !Keyboard.current.aKey.isPressed
                                        && !Keyboard.current.sKey.isPressed
                                        && !Keyboard.current.dKey.isPressed) {
             animation.Play("Idle");
+        } else {
+            animation.Play("Walking");
         }
 
         // JUMP
@@ -89,7 +91,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // SHOOT
-        if (Keyboard.current != null && Mouse.current.leftButton.wasPressedThisFrame) {
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) {
             Shoot();
         }
 
