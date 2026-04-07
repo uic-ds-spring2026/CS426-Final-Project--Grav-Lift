@@ -67,13 +67,15 @@ public class PlayerMovement : MonoBehaviour {
         if (Keyboard.current != null && Keyboard.current.dKey.isPressed) {
             MoveRight();
         }
-        if (Keyboard.current != null && !Keyboard.current.wKey.isPressed
-                                       && !Keyboard.current.aKey.isPressed
-                                       && !Keyboard.current.sKey.isPressed
-                                       && !Keyboard.current.dKey.isPressed) {
-            animation.Play("Idle");
-        } else {
+        if (Keyboard.current != null && (Keyboard.current.wKey.isPressed
+                                       || Keyboard.current.aKey.isPressed
+                                       || Keyboard.current.sKey.isPressed
+                                       || Keyboard.current.dKey.isPressed)) {
             animation.Play("Walking");
+        } else if (Keyboard.current != null && Keyboard.current.bKey.isPressed) {
+            animation.Play("Dancing");
+        } else {
+            animation.Play("Idle");
         }
 
         // JUMP
@@ -81,9 +83,7 @@ public class PlayerMovement : MonoBehaviour {
             Jump();
         }
         
-        if (Keyboard.current != null && Keyboard.current.bKey.isPressed) {
-            animation.Play("Dancing");
-        }
+
 
         // MOUSE MOVEMENT
         if (Mouse.current != null && player_camera != null) {
