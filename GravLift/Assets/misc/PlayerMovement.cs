@@ -57,20 +57,30 @@ public class PlayerMovement : MonoBehaviour {
         // WASD
         if (Keyboard.current != null && Keyboard.current.wKey.isPressed) {
             MoveForward();
-        }
-        if (Keyboard.current != null && Keyboard.current.aKey.isPressed) {
+            animation.Play("Walking");
+        } if (Keyboard.current != null && Keyboard.current.aKey.isPressed) {
             MoveLeft();
-        }
-        if (Keyboard.current != null && Keyboard.current.sKey.isPressed) {
+            animation.Play("Walking");
+        } if (Keyboard.current != null && Keyboard.current.sKey.isPressed) {
             MoveBackward();
-        }
-        if (Keyboard.current != null && Keyboard.current.dKey.isPressed) {
+            animation.Play("Walking");
+        } if (Keyboard.current != null && Keyboard.current.dKey.isPressed) {
             MoveRight();
+            animation.Play("Walking");
+        } if (Keyboard.current != null && !Keyboard.current.wKey.isPressed
+                                       && !Keyboard.current.aKey.isPressed
+                                       && !Keyboard.current.sKey.isPressed
+                                       && !Keyboard.current.dKey.isPressed) {
+            animation.Play("Idle");
         }
 
         // JUMP
         if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && on_ground) {
             Jump();
+        }
+        
+        if (Keyboard.current != null && Keyboard.current.bKey.isPressed) {
+            animation.Play("Dancing");
         }
 
         // MOUSE MOVEMENT
@@ -88,12 +98,6 @@ public class PlayerMovement : MonoBehaviour {
             Aim();
         } else if (player_camera != null) {
             StopAiming();
-        }
-
-        if (Keyboard.current != null && Keyboard.current.bKey.isPressed) {
-            animation.Play("Dancing");
-        } else {
-            animation.Play("Idle");
         }
     }
 
