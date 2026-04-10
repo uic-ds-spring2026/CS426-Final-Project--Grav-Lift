@@ -18,8 +18,6 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private int[] bullet_damages = {10, 12, 14, 16, 18, 20, 23, 26, 29, 32};
     [SerializeField] private float interactionDistance;
     [SerializeField] private float air_movement_percentage;
-    //public Slider health_slider;
-    //int framesPressed = 0;
 
     public GameObject cannon;
     public GameObject bullet;
@@ -48,39 +46,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void Update() {
-        //UpdateHealthUI();
+        GatherInput();
 
-        // WASD
-        if (Keyboard.current != null && Keyboard.current.wKey.isPressed) {
-            MoveForward();
-        }
-        if (Keyboard.current != null && Keyboard.current.aKey.isPressed) {
-            MoveLeft();
-        }
-        if (Keyboard.current != null && Keyboard.current.sKey.isPressed) {
-            MoveBackward();
-        }
-        if (Keyboard.current != null && Keyboard.current.dKey.isPressed) {
-            MoveRight();
-        }
-        if (Keyboard.current != null && (Keyboard.current.wKey.isPressed
-                                       || Keyboard.current.aKey.isPressed
-                                       || Keyboard.current.dKey.isPressed)) {
-            animation.Play("Running");
-        } else if (Keyboard.current != null && Keyboard.current.sKey.isPressed) {
-            animation.Play("Running Backward");    
-        } else if (Keyboard.current != null && Keyboard.current.bKey.isPressed) {
-            animation.Play("Dancing");
-        } else {
-            animation.Play("Idle");
-        }
-
-        // JUMP
-        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && on_ground) {
-            //Jump();
-        }
-        
-        // MOUSE MOVEMENT
         if (Mouse.current != null && player_camera != null) {
             Turn();
         }
@@ -163,7 +130,7 @@ public class PlayerMovement : MonoBehaviour {
         if (collision == null || collision.collider == null) return false;
 
         foreach (ContactPoint contact in collision.contacts) {
-            if (Vector3.Dot(contact.normal, t.up) > 0.4f) {
+            if (contact.normal.y > 0.4f) {
                 return true;
             }
         }
