@@ -11,7 +11,7 @@ public class GravityFlip : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space) && timer <= 0.0) {
+        if (Input.GetKeyDown(KeyCode.Space) && timer <= 0.0) { // gravity only flips if not already flipping
             FlipGravity();
         }
 
@@ -28,11 +28,11 @@ public class GravityFlip : MonoBehaviour {
 
     private void RotatePlayer() {
         if (player != null) {
-            player.transform.Rotate(0.0f, 0.0f, 180.0f / (180.0f / flip_duration * Time.deltaTime));
+            player.transform.Rotate(0.0f, 0.0f, 180.0f / (180.0f / flip_duration * Time.deltaTime)); // rotate the player by a small amount each frame
         }
         timer -= Time.deltaTime;
         if (timer <= 0) {
-            player.transform.rotation = upside_down ? Quaternion.Euler(0,0,180) : Quaternion.identity;
+            player.transform.rotation = upside_down ? Quaternion.Euler(0,0,180) : Quaternion.identity; // this ensures the player is perfectly perpendicular to the ground when finished rotating
         }
     }
 }
