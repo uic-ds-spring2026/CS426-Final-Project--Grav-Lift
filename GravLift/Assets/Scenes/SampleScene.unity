@@ -189,11 +189,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4f9c9e542b49e9c49b700625b2917d5e, type: 3}
       propertyPath: m_Name
-      value: Ch20_nonPBR@Happy Idle
+      value: PLAYER
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4f9c9e542b49e9c49b700625b2917d5e, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: PLAYER
       objectReference: {fileID: 0}
     - target: {fileID: 6568384052110350745, guid: 4f9c9e542b49e9c49b700625b2917d5e, type: 3}
       propertyPath: m_LocalPosition.x
