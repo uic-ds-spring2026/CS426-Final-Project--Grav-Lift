@@ -225,6 +225,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f9c9e542b49e9c49b700625b2917d5e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 39132947}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f9c9e542b49e9c49b700625b2917d5e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 39132948}
   m_SourcePrefab: {fileID: 100100000, guid: 4f9c9e542b49e9c49b700625b2917d5e, type: 3}
 --- !u!1 &39132942 stripped
 GameObject:
@@ -337,6 +340,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &39132948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39132942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99d857af7c3ca034ba7e8b26344d8a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GravityFlip
 --- !u!1 &49023858
 GameObject:
   m_ObjectHideFlags: 0
