@@ -32,8 +32,6 @@ public class PlayerMovement : MonoBehaviour {
     private Transform t;
     [SerializeField] private Camera player_camera;
     private readonly HashSet<int> groundCollisionIds = new HashSet<int>();
-
-    // Input tracking
     private Vector3 moveInput;
 
     void Start() {
@@ -162,14 +160,14 @@ public class PlayerMovement : MonoBehaviour {
         GameObject newBullet = GameObject.Instantiate(bullet, cannon.transform.position, cannon.transform.rotation) as GameObject;
         Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
         
-        float randomness = bullet_bloom > 0 ? bullet_bloom : 0.01f; // Used your bullet bloom variable here!
+        float randomness = bullet_bloom > 0 ? bullet_bloom : 0.01f; 
         Vector3 spread = new Vector3(
             Random.Range(-randomness, randomness),
             Random.Range(-randomness, randomness),
             Random.Range(-randomness, randomness)
         );
         Vector3 randomizedForward = (newBullet.transform.forward + spread).normalized;
-        Vector3 shotDirection = (randomizedForward * bullet_speed) + (Vector3.up * 1050); // Using your bullet_speed variable
+        Vector3 shotDirection = (randomizedForward * bullet_speed) + (Vector3.up * 1050);
         bulletRb.AddForce(shotDirection);
     }
 
