@@ -25,8 +25,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float interactionDistance;
     [SerializeField] private float air_movement_percentage;
     //public Slider health_slider;
-    //public float rotationSpeed = 45f;
-    int framesPressed = 0;
+    //int framesPressed = 0;
 
     public GameObject cannon;
     public GameObject bullet;
@@ -69,9 +68,10 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (Keyboard.current != null && (Keyboard.current.wKey.isPressed
                                        || Keyboard.current.aKey.isPressed
-                                       || Keyboard.current.sKey.isPressed
                                        || Keyboard.current.dKey.isPressed)) {
             animation.Play("Running");
+        } else if (Keyboard.current != null && Keyboard.current.sKey.isPressed) {
+            animation.Play("Running Backward");    
         } else if (Keyboard.current != null && Keyboard.current.bKey.isPressed) {
             animation.Play("Dancing");
         } else {
@@ -80,11 +80,9 @@ public class PlayerMovement : MonoBehaviour {
 
         // JUMP
         if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && on_ground) {
-            Jump();
+            //Jump();
         }
         
-
-
         // MOUSE MOVEMENT
         if (Mouse.current != null && player_camera != null) {
             Turn();
@@ -131,7 +129,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // Ground check without string tags to avoid runtime errors when project tags differ.
         foreach (ContactPoint contact in collision.contacts) {
-            if (contact.normal.y > 0.4f) {
+            if (Vector3.Dot(contact.normal, t.up) > 0.4f) {
                 return true;
             }
         }
