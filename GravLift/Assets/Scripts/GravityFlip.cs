@@ -1,21 +1,23 @@
 using UnityEngine;
 
 public class GravityFlip : MonoBehaviour {
-    // Update is called once per frame
     private bool upside_down = false;
     private float flip_duration = 0.5f;
     private float flip_timer = 0.0f;
     private GameObject player;
+
     private void Start() {
-        player = GameObject.FindGameObjectWithTag("PLAYER");
+        // NOTE: Make sure your tag is exactly "PLAYER" in Unity, 
+        // tags are case-sensitive. Usually, the default is "Player".
+        player = GameObject.FindGameObjectWithTag("PLAYER"); 
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space) && flip_timer <= 0.0) { // gravity only flips if not already flipping
+        if (Input.GetKeyDown(KeyCode.Space) && flip_timer <= 0.0f) { 
             FlipGravity();
         }
 
-        if (flip_timer > 0.0) {
+        if (flip_timer > 0.0f) {
             RotatePlayer();
         }
     }
@@ -28,11 +30,22 @@ public class GravityFlip : MonoBehaviour {
 
     private void RotatePlayer() {
         if (player != null) {
-            player.transform.Rotate(0.0f, 0.0f, 180.0f / (180.0f / flip_duration * Time.deltaTime)); // rotate the player by a small amount each frame
+            // Calculate how many degrees we should rotate this exact frame
+            float degreesThisFrame = (180.0f / flip_duration) * Time.deltaTime;
+            
+            // Apply the rotation relative to the player's local space
+            player.transform.Rotate(0.0f, 0.0f, degreesThisFrame, Space.Self);
         }
+
         flip_timer -= Time.deltaTime;
-        if (flip_timer <= 0) {
-            player.transform.rotation = upside_down ? Quaternion.Euler(0,0,180) : Quaternion.identity; // this ensures the player is perfectly perpendicular to the ground when finished rotating
+
+        // When the flip is done, snap ONLY the Z axis to perfectly 180 or 0
+        if (flip_timer <= 0f && player != null) {
+            Vector3 currentRotation = player.transform.eulerAngles;
+            float finalZRotation = upside_down ? 180f : 0f;
+            
+            // Keep the current X and Y so we don't mess up the camera direction
+            player.transform.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, finalZRotation);
         }
     }
 }
