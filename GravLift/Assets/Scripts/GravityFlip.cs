@@ -1,21 +1,21 @@
 using UnityEngine;
 
 public class GravityFlip : MonoBehaviour {
-    // Update is called once per frame
     private bool upside_down = false;
     private float flip_duration = 0.5f;
     private float flip_timer = 0.0f;
     private GameObject player;
+
     private void Start() {
-        player = GameObject.FindGameObjectWithTag("PLAYER");
+        player = GameObject.FindGameObjectWithTag("PLAYER"); 
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space) && flip_timer <= 0.0) { // gravity only flips if not already flipping
+        if (Input.GetKeyDown(KeyCode.Space) && flip_timer <= 0.0f) { 
             FlipGravity();
         }
 
-        if (flip_timer > 0.0) {
+        if (flip_timer > 0.0f) {
             RotatePlayer();
         }
     }
@@ -28,11 +28,23 @@ public class GravityFlip : MonoBehaviour {
 
     private void RotatePlayer() {
         if (player != null) {
-            player.transform.Rotate(0.0f, 0.0f, 180.0f / (180.0f / flip_duration * Time.deltaTime)); // rotate the player by a small amount each frame
+
+            // Degrees per frame calculation so we have a simple screen rotation
+            float degreesThisFrame = (180.0f / flip_duration) * Time.deltaTime;
+            
+            // Apply rotation for around the player for the screen essentially
+            player.transform.Rotate(0.0f, 0.0f, degreesThisFrame, Space.Self);
         }
+
         flip_timer -= Time.deltaTime;
-        if (flip_timer <= 0) {
-            player.transform.rotation = upside_down ? Quaternion.Euler(0,0,180) : Quaternion.identity; // this ensures the player is perfectly perpendicular to the ground when finished rotating
+         float finalZRotation = 0f;
+
+        // set the z axis to 180 or 0  depending on if we're upside down or not
+        if (flip_timer <= 0f && player != null) {
+            Vector3 currentRotation = player.transform.eulerAngles;
+            if (upside_down) finalZRotation = 180f;
+            else finalZRotation = 0f;
+            player.transform.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, finalZRotation);
         }
     }
 }

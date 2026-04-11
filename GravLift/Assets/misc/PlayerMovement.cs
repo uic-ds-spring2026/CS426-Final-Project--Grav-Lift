@@ -125,15 +125,23 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private bool IsGroundCollision(Collision collision) {
-        if (collision == null || collision.collider == null) return false;
+    if (collision == null || collision.collider == null) return false;
 
-        foreach (ContactPoint contact in collision.contacts) {
-            if (contact.normal.y > 0.4f) {
-                return true;
-            }
+    // determine the opposite side of gravity, force up, not down
+    float gravityDirection = Mathf.Sign(Physics.gravity.y);
+
+    foreach (ContactPoint contact in collision.contacts) {
+        /**
+            // If gravity is normal (-9.81), gravityDirection is -1. We check if normal.y > 0.4f
+            // Else if gravity is flipped (9.81), gravityDirection is 1. We check if normal.y < -0.4f
+            // literally checks for if we're touching the floor equivalent to be able to move
+         */
+        if (contact.normal.y * -gravityDirection > 0.4f) {
+            return true;
         }
-        return false;
     }
+    return false;
+}
 
     private void Turn() {
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
