@@ -7,8 +7,6 @@ public class GravityFlip : MonoBehaviour {
     private GameObject player;
 
     private void Start() {
-        // NOTE: Make sure your tag is exactly "PLAYER" in Unity, 
-        // tags are case-sensitive. Usually, the default is "Player".
         player = GameObject.FindGameObjectWithTag("PLAYER"); 
     }
 
@@ -30,21 +28,22 @@ public class GravityFlip : MonoBehaviour {
 
     private void RotatePlayer() {
         if (player != null) {
-            // Calculate how many degrees we should rotate this exact frame
+
+            // Degrees per frame calculation so we have a simple screen rotation
             float degreesThisFrame = (180.0f / flip_duration) * Time.deltaTime;
             
-            // Apply the rotation relative to the player's local space
+            // Apply rotation for around the player for the screen essentially
             player.transform.Rotate(0.0f, 0.0f, degreesThisFrame, Space.Self);
         }
 
         flip_timer -= Time.deltaTime;
+         float finalZRotation = 0f;
 
-        // When the flip is done, snap ONLY the Z axis to perfectly 180 or 0
+        // set the z axis to 180 or 0  depending on if we're upside down or not
         if (flip_timer <= 0f && player != null) {
             Vector3 currentRotation = player.transform.eulerAngles;
-            float finalZRotation = upside_down ? 180f : 0f;
-            
-            // Keep the current X and Y so we don't mess up the camera direction
+            if (upside_down) finalZRotation = 180f;
+            else finalZRotation = 0f;
             player.transform.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, finalZRotation);
         }
     }
