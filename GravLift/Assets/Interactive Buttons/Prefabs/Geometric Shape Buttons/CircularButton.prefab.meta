@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 86fe648bf42883d479cc9158b500bd71
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/Geometric Shape Buttons/CircularButton.prefab
+  uploadId: 739673

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fc651e45f096fef409d9e255709ac1bc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Materials/Pressure Plates Mat/GlowingRed.mat
+  uploadId: 739673

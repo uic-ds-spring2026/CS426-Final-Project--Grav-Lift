@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 459759af4e839d04b9cb87086482280f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/Toggle Switches/ToggleSwitchOnOffLightSyst.prefab
+  uploadId: 739673

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 27acf3fa02573434b976ec3040bb450c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Animations/DirectionalPanel.controller
+  uploadId: 739673

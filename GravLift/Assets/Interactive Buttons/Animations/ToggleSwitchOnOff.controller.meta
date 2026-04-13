@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 41bb0323fe49a8045b9fed720e7ad17b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Animations/ToggleSwitchOnOff.controller
+  uploadId: 739673

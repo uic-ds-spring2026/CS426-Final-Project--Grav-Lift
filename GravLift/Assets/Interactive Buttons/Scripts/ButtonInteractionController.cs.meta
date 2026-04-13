@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5ab81465bb7ca074189f2bacc34ffb03
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Scripts/ButtonInteractionController.cs
+  uploadId: 739673

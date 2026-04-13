@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1c05a27d05fe0c649a93e573e7299ada
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Scripts/LeverInteractionController.cs
+  uploadId: 739673

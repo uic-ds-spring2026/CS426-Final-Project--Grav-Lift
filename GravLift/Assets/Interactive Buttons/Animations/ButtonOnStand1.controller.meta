@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 055c0bd1438550f488d98d8ddaa44e42
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Animations/ButtonOnStand1.controller
+  uploadId: 739673

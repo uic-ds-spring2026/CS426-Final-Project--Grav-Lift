@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bfef178a412089f45a901146b4eb45cc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Materials/Toggle Switches Mat/BrightGreen.mat
+  uploadId: 739673

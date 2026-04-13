@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3d2c4c0fb33b84c47b69142e39e785fc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/Pressure Plates/SquarePressurePlateElec.prefab
+  uploadId: 739673

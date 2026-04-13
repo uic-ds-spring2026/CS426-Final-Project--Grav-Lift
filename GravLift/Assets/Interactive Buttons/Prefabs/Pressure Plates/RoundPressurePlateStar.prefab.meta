@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ea4c0e3d00abc934281445f3b25724ad
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/Pressure Plates/RoundPressurePlateStar.prefab
+  uploadId: 739673

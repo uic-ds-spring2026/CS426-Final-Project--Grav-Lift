@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9dfd39f97385aa448a93f730ed1ae803
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/Pressure Plates/SquarePressurePlateStar.prefab
+  uploadId: 739673

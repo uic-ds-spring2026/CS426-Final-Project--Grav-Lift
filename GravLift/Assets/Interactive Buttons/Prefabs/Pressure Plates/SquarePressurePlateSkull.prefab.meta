@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bbdf0cb685a6fa44984bcfe4039ebc0f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/Pressure Plates/SquarePressurePlateSkull.prefab
+  uploadId: 739673
