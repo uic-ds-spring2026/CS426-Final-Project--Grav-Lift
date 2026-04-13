@@ -1,55 +1,57 @@
 using UnityEngine;
 
-public class TurretPlayerTracking : MonoBehaviour
-{
+public class TurretPlayerTracking : MonoBehaviour {
     public Transform turret;          
     public Transform firePoint;      
     public GameObject bulletPrefab;
 
-    public float range = 25f;
-    public float fireRate = 1f;
-    public float rotationSpeed = 5f;
-    public float fireAngle = 5f;     
+    public float range = 25.0f;
+    public float fireRate = 1.0f;
+    public float rotationSpeed = 5.0f;
+    public float fireAngle = 5.0f;     
 
     private Transform player;
-    private float fireCooldown = 0f;
+    private float fireCooldown = 0.0f;
 
     private enum State { Idle, Tracking, Firing }
     private State currentState = State.Idle;
 
-    void Start()
-    {
-        var playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null) player = playerObj.transform;
+    void Start() {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null) {
+            player = playerObj.transform;
+        }
     }
 
-    void Update()
-    {
-        if (player == null) return;
+    void Update() {
+        if (player == null) {
+            return;
+        }
 
         float dist = Vector3.Distance(player.position, transform.position);
         // FSM STATE TRANSITIONS
-        switch (currentState)
-        {
+        switch (currentState) {
             case State.Idle:
-                if (dist <= range)
+                if (dist <= range) {
                     currentState = State.Tracking;
+                }
                 break;
 
             case State.Tracking:
-                if (dist > range)
+                if (dist > range) {
                     currentState = State.Idle;
+                }
                 break;
 
             case State.Firing:
-                if (dist > range)
+                if (dist > range) {
                     currentState = State.Idle;
+                }
                 break;
         }
 
         //FSM ACTUAL STATES
-        switch (currentState)
-        {
+        switch (currentState) {
             case State.Idle:
                 // idling until player nearby
                 break;
@@ -57,44 +59,42 @@ public class TurretPlayerTracking : MonoBehaviour
             case State.Tracking:
                 TrackPlayer();
 
-                if (IsAimedAtPlayer(5f)) // strict to start firing
+                if (IsAimedAtPlayer(5.0f)) { // strict to start firing
                     currentState = State.Firing;
+                }
                 break;
 
             case State.Firing:
                 TrackPlayer();
                 Fire();
 
-                if (!IsAimedAtPlayer(10f)) // looser to stay firing
+                if (!IsAimedAtPlayer(10.0f)) { // looser to stay firing
                     currentState = State.Tracking;
+                }
                 break;
         }
     }
 
-    void TrackPlayer()
-    {
+    void TrackPlayer() {
         Vector3 dir = player.position - turret.position;
 
         Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(turret.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
+        Vector3 rotation = Quaternion.Slerp(turret.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
         turret.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
     }
 
-    bool IsAimedAtPlayer(float angleThreshold)
-    {
+    bool IsAimedAtPlayer(float angleThreshold) {
         Vector3 dirToPlayer = (player.position - firePoint.position).normalized;
         float angle = Vector3.Angle(firePoint.forward, dirToPlayer);
         return angle < angleThreshold;
     }
 
-    void Fire()
-    {
+    void Fire() {
         fireCooldown -= Time.deltaTime;
 
-        if (fireCooldown <= 0f)
-        {
+        if (fireCooldown <= 0.0f) {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            fireCooldown = 1f / fireRate;
+            fireCooldown = 1.0f / fireRate;
         }
     }
 }
