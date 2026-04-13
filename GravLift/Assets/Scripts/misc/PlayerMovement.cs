@@ -50,9 +50,7 @@ public class PlayerMovement : MonoBehaviour {
         if (Mouse.current != null && player_camera != null) {
             Turn();
         }
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) {
-            Shoot();
-        }
+
         if (player_camera != null && Mouse.current != null && Mouse.current.rightButton.isPressed) {
             Aim();
         } else if (player_camera != null) {
@@ -173,21 +171,6 @@ public class PlayerMovement : MonoBehaviour {
     private void StopAiming() {
         camera_sensitivity = camera_sensitivity_while_not_aiming;
         player_camera.fieldOfView = field_of_view_while_not_aiming;
-    }
-
-    private void Shoot() {
-        GameObject newBullet = GameObject.Instantiate(bullet, cannon.transform.position, cannon.transform.rotation) as GameObject;
-        Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
-        
-        float randomness = bullet_bloom > 0 ? bullet_bloom : 0.01f; 
-        Vector3 spread = new Vector3(
-            Random.Range(-randomness, randomness),
-            Random.Range(-randomness, randomness),
-            Random.Range(-randomness, randomness)
-        );
-        Vector3 randomizedForward = (newBullet.transform.forward + spread).normalized;
-        Vector3 shotDirection = (randomizedForward * bullet_speed) + (Vector3.up * 1050);
-        bulletRb.AddForce(shotDirection);
     }
 
     public void TakeDamage(int damage) {
