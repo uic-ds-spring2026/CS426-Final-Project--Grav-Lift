@@ -1,4 +1,6 @@
-Notes from testing the game 2026 Apr 13
+Notes from testing the game in class
+CS 426
+2026 Apr 13
 
 Compliments:
     Tester from group 18:
@@ -11,6 +13,9 @@ Compliments:
       * Turret is "cute"
       * Concept is cool
       * Level design looks nice (spaceship)
+
+    Tester from group 16:
+      * Concept is cool
 
 Improvement:
     Tester from group 18:
@@ -27,3 +32,9 @@ Improvement:
       * Player gets stuck in the doorways
       * Needs to be directions on what to do
       * Add menu explaining the controls
+
+    Tester from group 16:
+      * Button functionality
+      * Gravity not changing properly
+      * Add more enemies
+      * Camera needs work
