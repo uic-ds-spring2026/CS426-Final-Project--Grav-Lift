@@ -1820,8 +1820,8 @@ Transform:
   m_GameObject: {fileID: 393293287}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -2.7400038, y: 36.600002, z: 18.6}
-  m_LocalScale: {x: 1, y: 1.3, z: 1}
+  m_LocalPosition: {x: -2.9400039, y: 29.799997, z: 18.800001}
+  m_LocalScale: {x: 3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1294191475}
@@ -3093,8 +3093,8 @@ Transform:
   m_GameObject: {fileID: 741929910}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -7.540003, y: 36.600002, z: 16}
-  m_LocalScale: {x: 1, y: 1.3, z: 1}
+  m_LocalPosition: {x: -7.540003, y: 29.8, z: 16.2}
+  m_LocalScale: {x: 3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1294191475}
@@ -3208,8 +3208,8 @@ Transform:
   m_GameObject: {fileID: 789026462}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: 0, w: 0}
-  m_LocalPosition: {x: -6.340004, y: 36.600002, z: 19.8}
-  m_LocalScale: {x: 1, y: 1.3, z: 1}
+  m_LocalPosition: {x: -6.340004, y: 29.799997, z: 20}
+  m_LocalScale: {x: 3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1294191475}
@@ -4979,6 +4979,14 @@ PrefabInstance:
     - target: {fileID: 5716618061574841010, guid: 83d96dfb9c072624db40ae605332ff28, type: 3}
       propertyPath: m_Name
       value: Floordesign
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974073502612408675, guid: 83d96dfb9c072624db40ae605332ff28, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385601838098299574, guid: 83d96dfb9c072624db40ae605332ff28, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8461132213649085682, guid: 83d96dfb9c072624db40ae605332ff28, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7249,8 +7257,8 @@ Transform:
   m_GameObject: {fileID: 1929006031}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: 0, w: 0}
-  m_LocalPosition: {x: -6.340004, y: 36.600002, z: 14.600002}
-  m_LocalScale: {x: 1, y: 1.3, z: 1}
+  m_LocalPosition: {x: -6.540004, y: 29.799997, z: 14.800002}
+  m_LocalScale: {x: 3, y: 1.33, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1294191475}
