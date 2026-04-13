@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private int[] bullet_damages = {10, 12, 14, 16, 18, 20, 23, 26, 29, 32};
     [SerializeField] private float interactionDistance;
     [SerializeField] private float air_movement_percentage;
+    [SerializeField] private AudioSource footstepAudioSource;
 
     public GameObject cannon;
     public GameObject bullet;
@@ -79,10 +80,20 @@ public class PlayerMovement : MonoBehaviour {
 
         if (moveInput.magnitude > 0.1f) {
             animation.Play("Running");
+            
+            if (on_ground && !footstepAudioSource.isPlaying) {
+                footstepAudioSource.Play();
+            } else if (!on_ground && footstepAudioSource.isPlaying) {
+                footstepAudioSource.Stop();
+            }
+            
         } else if (Keyboard.current.bKey.isPressed) {
             animation.Play("Dancing");
+            if (footstepAudioSource.isPlaying) footstepAudioSource.Stop();
+            
         } else {
             animation.Play("Idle");
+            if (footstepAudioSource.isPlaying) footstepAudioSource.Stop();
         }
     }
 
