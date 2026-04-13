@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+# if UNITY_EDITOR
 using UnityEditor.Presets;
+# endif     
 using UnityEngine;
 
 namespace InteractiveObjects.Button
@@ -48,7 +50,7 @@ namespace InteractiveObjects.Button
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.tag == "Player") // Check if player exited in trigger (remember to specify the “Player” tag for your player)
+            if (other.tag == "Player") // Check if player exited in trigger (remember to specify the ï¿½Playerï¿½ tag for your player)
             {
                 isInTriggerZone = false;
             }
