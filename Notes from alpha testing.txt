@@ -18,7 +18,7 @@ Compliments:
       * Concept is cool
 
     Tester from group 15:
-      * 
+      * Concept is cool
 
 Improvement:
     Tester from group 18:
@@ -43,4 +43,4 @@ Improvement:
       * Camera needs work
 
     Tester from group 15:
-      * 
+      * Needs clues on where to go
