@@ -1,0 +1,46 @@
+Notes from testing the game in class
+CS 426
+2026 Apr 13
+
+Compliments:
+    Tester from group 18:
+      * Level design looks great
+      * Map looks cool
+      * Concept is cool
+      * Future additions seem interesting
+
+    Tester from group 17:
+      * Turret is "cute"
+      * Concept is cool
+      * Level design looks nice (spaceship)
+
+    Tester from group 16:
+      * Concept is cool
+
+    Tester from group 15:
+      * Concept is cool
+
+Improvement:
+    Tester from group 18:
+      * We need something in the start of the map that tells the player they can change gravity and that it is the whole point of the game
+      * There should be subtle clues telling where to go next
+      * There needs to be a health indicator
+      * Player gets stuck between rooms
+      * No audio yet
+      * Needs to be first person
+      * Suggestion for interesting dialogue 
+
+    Tester from group 17:
+      * Player needs to know they can change gravity
+      * Player gets stuck in the doorways
+      * Needs to be directions on what to do
+      * Add menu explaining the controls
+
+    Tester from group 16:
+      * Button functionality
+      * Gravity not changing properly
+      * Add more enemies
+      * Camera needs work
+
+    Tester from group 15:
+      * Needs clues on where to go

@@ -18,6 +18,14 @@ public class GravityFlip : MonoBehaviour {
         if (flip_timer > 0.0f) {
             RotatePlayer();
         }
+
+        // set the z axis to 180 or 0 depending on if we're upside down or not
+        if (flip_timer <= 0f && player != null) {
+            Vector3 currentRotation = player.transform.eulerAngles;
+            if (upside_down) finalZRotation = 180.0f;
+            else finalZRotation = 0.0f;
+            player.transform.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, finalZRotation);
+        }
     }
 
     private void FlipGravity() {
@@ -45,14 +53,6 @@ public class GravityFlip : MonoBehaviour {
         }
 
         flip_timer -= Time.deltaTime;
-         float finalZRotation = 0f;
-
-        // set the z axis to 180 or 0  depending on if we're upside down or not
-        if (flip_timer <= 0f && player != null) {
-            Vector3 currentRotation = player.transform.eulerAngles;
-            if (upside_down) finalZRotation = 180.0f;
-            else finalZRotation = 0.0f;
-            player.transform.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, finalZRotation);
-        }
+        float finalZRotation = 0f;
     }
 }
