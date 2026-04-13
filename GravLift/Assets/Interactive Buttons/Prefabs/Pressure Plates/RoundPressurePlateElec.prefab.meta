@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9d2e3f647efbf3542b51961cacd51e8f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/Pressure Plates/RoundPressurePlateElec.prefab
+  uploadId: 739673

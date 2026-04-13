@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6ff1dfb673f95c840814f698fb4c06a2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Scripts/ParticleValveController.cs
+  uploadId: 739673

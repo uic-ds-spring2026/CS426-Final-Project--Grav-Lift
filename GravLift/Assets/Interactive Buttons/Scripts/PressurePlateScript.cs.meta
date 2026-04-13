@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 51dd7c2409731224cbaf43c4cdd5f633
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Scripts/PressurePlateScript.cs
+  uploadId: 739673

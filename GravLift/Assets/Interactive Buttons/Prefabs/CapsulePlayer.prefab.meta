@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b2d1c8b43def28c45bfec246dd378e54
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/CapsulePlayer.prefab
+  uploadId: 739673

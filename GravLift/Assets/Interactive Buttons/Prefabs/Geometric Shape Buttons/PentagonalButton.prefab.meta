@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 042119e465c3f97498b4a68ad7cccd08
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/Geometric Shape Buttons/PentagonalButton.prefab
+  uploadId: 739673

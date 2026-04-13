@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9e8db7e9c5746f94d9d73196779473ca
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Animations/Switch1.controller
+  uploadId: 739673

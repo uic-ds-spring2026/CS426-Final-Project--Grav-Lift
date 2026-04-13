@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 40d448ff54e84524c9f69185fe2806c2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Scripts/DirectionalPanel.cs
+  uploadId: 739673

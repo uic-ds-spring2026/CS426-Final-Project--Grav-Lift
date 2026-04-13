@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 46bbd2be230ab4a4aa7fdc2b93fc28d9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/Geometric Shape Buttons/SquareButton.prefab
+  uploadId: 739673

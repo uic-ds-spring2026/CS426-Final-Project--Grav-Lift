@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2a9a436fe3c5fa043a707437bacf24ff
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Animations/Lever3.controller
+  uploadId: 739673

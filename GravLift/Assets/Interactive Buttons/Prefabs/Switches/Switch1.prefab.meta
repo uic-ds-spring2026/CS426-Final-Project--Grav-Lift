@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7d3510a82ac059e41b91448e76546771
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Prefabs/Switches/Switch1.prefab
+  uploadId: 739673

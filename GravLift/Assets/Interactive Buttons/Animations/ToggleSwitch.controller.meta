@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b37b1202350a47d47b9bdaf53d0f4a6b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 292066
+  packageName: Interactive Buttons
+  packageVersion: 2.0
+  assetPath: Assets/Interactive Buttons/Animations/ToggleSwitch.controller
+  uploadId: 739673
