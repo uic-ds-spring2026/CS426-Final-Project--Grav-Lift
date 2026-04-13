@@ -17,6 +17,9 @@ Compliments:
     Tester from group 16:
       * Concept is cool
 
+    Tester from group 15:
+      * 
+
 Improvement:
     Tester from group 18:
       * We need something in the start of the map that tells the player they can change gravity and that it is the whole point of the game
@@ -25,7 +28,7 @@ Improvement:
       * Player gets stuck between rooms
       * No audio yet
       * Needs to be first person
-      * Suggestion for interesting dialogue
+      * Suggestion for interesting dialogue 
 
     Tester from group 17:
       * Player needs to know they can change gravity
@@ -38,3 +41,6 @@ Improvement:
       * Gravity not changing properly
       * Add more enemies
       * Camera needs work
+
+    Tester from group 15:
+      * 
