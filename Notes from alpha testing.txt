@@ -10,6 +10,7 @@ Compliments:
     Tester from group 17:
       * Turret is "cute"
       * Concept is cool
+      * Level design looks nice (spaceship)
 
 Improvement:
     Tester from group 18:
@@ -24,3 +25,5 @@ Improvement:
     Tester from group 17:
       * Player needs to know they can change gravity
       * Player gets stuck in the doorways
+      * Needs to be directions on what to do
+      * Add menu explaining the controls
