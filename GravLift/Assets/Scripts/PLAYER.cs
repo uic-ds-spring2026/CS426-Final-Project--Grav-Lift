@@ -2,50 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour {
+    [SerializeField] private int health;
     [SerializeField] private int max_health;
+    [SerializeField] private Slider health_bar;
+    [SerializeField] private Image health_color;
+    [SerializeField] private TextMeshProUGUI health_text;
     [SerializeField] private float speed;
     [SerializeField] private float forward_bonus_speed;
     [SerializeField] private float camera_sensitivity_while_aiming;
     [SerializeField] private float camera_sensitivity_while_not_aiming;
     [SerializeField] private float field_of_view_while_aiming;
     [SerializeField] private float field_of_view_while_not_aiming;
-    [SerializeField] private float first_person_camera_height;
-    [SerializeField] private float spawn_ground_offset;
-    [SerializeField] private float bullet_speed;
-    [SerializeField] private float bullet_bloom;
-    [SerializeField] private int[] bullet_damages = {10, 12, 14, 16, 18, 20, 23, 26, 29, 32};
-    [SerializeField] private float interactionDistance;
     [SerializeField] private float air_movement_percentage;
     [SerializeField] private AudioSource footstepAudioSource;
+    [SerializeField] private Camera player_camera;
 
     public GameObject cannon;
     public GameObject bullet;
     private Animator animation;
-
-    public int health = 100;
     private float rotation_x = 0.0f;
     private Vector3 spawn_point;
     private bool on_ground = true;
     private float camera_sensitivity;
     private Rigidbody rb;
     private Transform t;
-    [SerializeField] private Camera player_camera;
     private readonly HashSet<int> groundCollisionIds = new HashSet<int>();
     private Vector3 moveInput;
 
-    void Start() {
+    public void Start() {
         rb = GetComponent<Rigidbody>();
         t = GetComponent<Transform>();
         health = max_health;
         animation = GetComponent<Animator>();
-        
         camera_sensitivity = camera_sensitivity_while_not_aiming;
+        UpdateHealthUI();
     }
 
     public void Update() {
         GatherInput();
+        UpdateHealthUI(); // here for testing purposes. doesn't need to run every frame
 
         if (Mouse.current != null && player_camera != null) {
             Turn();
@@ -134,23 +133,23 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private bool IsGroundCollision(Collision collision) {
-    if (collision == null || collision.collider == null) return false;
+        if (collision == null || collision.collider == null) return false;
 
-    // determine the opposite side of gravity, force up, not down
-    float gravityDirection = Mathf.Sign(Physics.gravity.y);
+        // determine the opposite side of gravity, force up, not down
+        float gravityDirection = Mathf.Sign(Physics.gravity.y);
 
-    foreach (ContactPoint contact in collision.contacts) {
-        /**
-            // If gravity is normal (-9.81), gravityDirection is -1. We check if normal.y > 0.4f
-            // Else if gravity is flipped (9.81), gravityDirection is 1. We check if normal.y < -0.4f
-            // literally checks for if we're touching the floor equivalent to be able to move
-         */
-        if (contact.normal.y * -gravityDirection > 0.4f) {
-            return true;
+        foreach (ContactPoint contact in collision.contacts) {
+            /**
+                // If gravity is normal (-9.81), gravityDirection is -1. We check if normal.y > 0.4f
+                // Else if gravity is flipped (9.81), gravityDirection is 1. We check if normal.y < -0.4f
+                // literally checks for if we're touching the floor equivalent to be able to move
+            */
+            if (contact.normal.y * -gravityDirection > 0.4f) {
+                return true;
+            }
         }
+        return false;
     }
-    return false;
-}
 
     private void Turn() {
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
@@ -175,14 +174,45 @@ public class PlayerMovement : MonoBehaviour {
 
     public void TakeDamage(int damage) {
         health -= damage;
+        UpdateHealthUI();
         if (health <= 0) {
             Die();
         }
     }
 
     public void Die() {
+        // perhaps add a death screeen?
         t.position = spawn_point;
         rb.linearVelocity = Vector3.zero;
         health = max_health;
+        UpdateHealthUI();
+    }
+
+    /* UPDATES THE HEALTH BAR AND TEXT
+     */
+    private void UpdateHealthUI() {
+        // controls the health bar
+        if (health_bar != null) {
+            health_bar.value = (float) health / max_health;
+        }
+
+        // controls the health text
+        if (health_text != null) {
+            health_text.text = health.ToString() + " / " + max_health.ToString();
+        }
+
+        // controls the health color
+        if (health_color != null && health_text != null) {
+            if (health <= 20) {
+                health_color.color = Color.red;
+                health_text.color = Color.red;
+            } else if (health <= 50) {
+                health_color.color = Color.yellow;
+                health_text.color = Color.yellow;
+            } else {
+                health_color.color = Color.green;
+                health_text.color = Color.green;
+            }
+        }
     }
 }
