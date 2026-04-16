@@ -22,7 +22,6 @@ Follow these ordered steps to set up the project locally on your machine and ins
    ```bash
    git clone [https://github.com/uic-ds-spring2026/CS426-Final-Project--Grav-Lift.git](https://github.com/uic-ds-spring2026/CS426-Final-Project--Grav-Lift.git)
 
-```
  2. **Navigate to the project directory**
 
    ```bash
