@@ -26,7 +26,6 @@ Follow these ordered steps to set up the project locally on your machine and ins
  2. **Navigate to the project directory**
    ```bash
    cd CS426-Final-Project--Grav-Lift
-   
    ```
  3. **Add the project to Unity Hub**
    * Open **Unity Hub**.
