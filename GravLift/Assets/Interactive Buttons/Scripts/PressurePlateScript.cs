@@ -9,8 +9,7 @@ namespace InteractiveObjects.PressurePlates
         public Material ColorOn;
         public Material ColorOff;
 
-        // Reference to the door we want to open
-        [SerializeField] private DoorController linkedDoor; 
+        [SerializeField] private DoorController[] linkedDoors; 
 
         private Renderer pressurePlateRenderer;
 
@@ -29,10 +28,12 @@ namespace InteractiveObjects.PressurePlates
             pressurePlateRenderer.material = ColorOn;
             audioSource.PlayOneShot(mySound);
 
-            // Tell the linked door to open
-            if (linkedDoor != null)
+            foreach (DoorController door in linkedDoors)
             {
-                linkedDoor.OpenDoor();
+                if (door != null)
+                {
+                    door.OpenDoor();
+                }
             }
         }
 
@@ -41,10 +42,12 @@ namespace InteractiveObjects.PressurePlates
             // Reset the plate visually
             pressurePlateRenderer.material = ColorOff;
 
-            // Optional: Tell the linked door to close when stepping off
-            if (linkedDoor != null)
+            foreach (DoorController door in linkedDoors)
             {
-                linkedDoor.CloseDoor();
+                if (door != null)
+                {
+                    door.CloseDoor();
+                }
             }
         }
     }
