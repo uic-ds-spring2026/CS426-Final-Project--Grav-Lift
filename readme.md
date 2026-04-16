@@ -1,4 +1,3 @@
-```markdown
 # Grav-Lift
 
 **CS 426 Final Project**
@@ -55,6 +54,4 @@ Here is how you can interact with and test the game locally:
    * FernandoOKR.txt
    * RafaelMaatoukOKR.txt
    * andrewOKR.txt
-```
-
 ```
