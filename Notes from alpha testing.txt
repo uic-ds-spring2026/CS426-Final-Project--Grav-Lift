@@ -44,3 +44,18 @@ Improvement:
 
     Tester from group 15:
       * Needs clues on where to go
+
+
+  Task List
+  - Ability indicator
+  - Progression indicator
+  - Health indicator
+  - Stuck between rooms resolving
+  - Stuck in doorways
+  - Add controls menu
+  - Add button functionality
+  - Add more enemies
+  - Correct audio/implement properly
+  - Change camera view
+  - Add in dialogue
+  - 
