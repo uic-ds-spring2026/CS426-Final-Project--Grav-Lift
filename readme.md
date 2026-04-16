@@ -37,7 +37,7 @@ Follow these ordered steps to set up the project locally on your machine and ins
 Here is how you can interact with and test the game locally:
  1. **Open the Main Scene**
    * In the Unity Editor, navigate to the **Project** window at the bottom.
-   * Go to Assets/Scenes/ (or your designated scenes folder) and double-click the main game scene to load it into the hierarchy.
+   * Go to Assets/Scenes/ and double-click the main game scene to load it into the hierarchy.
  2. **Run the Game**
    * Press the **Play** button (▶) at the top center of the Unity Editor to start the game in the Game view.
  3. **Controls**
