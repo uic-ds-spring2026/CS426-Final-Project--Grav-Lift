@@ -1,6 +1,7 @@
 # Grav-Lift
 
 **CS 426 Final Project**
+**Authors: Rafael Matouk, Andrew ----, Fernando Lopez
 
 ## Overview
 Grav-Lift is a game development project created for the CS 426 course. The project is primarily built using the Unity engine and utilizes C#, HLSL, and ShaderLab for its core systems, gameplay mechanics, and custom visuals. 
