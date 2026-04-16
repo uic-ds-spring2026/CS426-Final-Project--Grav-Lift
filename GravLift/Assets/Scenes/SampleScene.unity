@@ -209,7 +209,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f9c9e542b49e9c49b700625b2917d5e, type: 3}
       insertIndex: 0
       addedObject: {fileID: 2129431681}
-    - targetCorrespondingSourceObject: {fileID: -5683194729546557836, guid: 4f9c9e542b49e9c49b700625b2917d5e, type: 3}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f9c9e542b49e9c49b700625b2917d5e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1382445301}
     m_AddedComponents:
@@ -8030,6 +8030,7 @@ GameObject:
   - component: {fileID: 1382445304}
   - component: {fileID: 1382445303}
   - component: {fileID: 1382445302}
+  - component: {fileID: 1382445305}
   m_Layer: 0
   m_Name: CAMERA
   m_TagString: MainCamera
@@ -8045,12 +8046,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382445300}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11400494, y: 0.03765467, z: -0.030383013, w: 0.99230134}
-  m_LocalPosition: {x: 0.04554459, y: -0.122500405, z: 0.11376062}
+  m_LocalRotation: {x: -0.000000009313224, y: 0.0000000037252894, z: -0.00000002025626, w: 1}
+  m_LocalPosition: {x: -0.033, y: 1.701, z: 0.089}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1244659773}
+  m_Father: {fileID: 39132946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1382445302
 MonoBehaviour:
@@ -8155,6 +8156,26 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1818360608 &1382445305
+PositionConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382445300}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_TranslationAtRest: {x: -0.033, y: 1.701, z: 0.089}
+  m_TranslationOffset: {x: 0.009377472, y: -0.08947396, z: 0.13056614}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_Active: 1
+  m_IsLocked: 0
+  m_Sources:
+  - sourceTransform: {fileID: 1244659773}
+    weight: 1
 --- !u!1 &1393361013 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 52d19f14d2f0dfa4f922db3764d97718, type: 3}
