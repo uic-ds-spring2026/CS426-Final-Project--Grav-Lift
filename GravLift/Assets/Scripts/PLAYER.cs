@@ -198,7 +198,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // controls the health text
         if (health_text != null) {
-            health_text.text = health.ToString() + " / " + max_health.ToString();
+            health_text.text = "HP: " + health.ToString() + " / " + max_health.ToString();
         }
 
         // controls the health color
