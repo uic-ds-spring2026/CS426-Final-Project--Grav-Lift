@@ -41,9 +41,8 @@ Here is how you can interact with and test the game locally:
  2. **Run the Game**
    * Press the **Play** button (▶) at the top center of the Unity Editor to start the game in the Game view.
  3. **Controls**
-   * **Movement:** W A S D or Arrow Keys
-   * **Action/Jump:** Spacebar
-   * *(Note: Please update these controls to match the exact inputs for Grav-Lift)*
+   * **Movement:** W A S D
+   * **Gravity Flip:** Spacebar
  4. **Stopping the Game**
    * Press the **Play** button again to exit Play Mode and return to the editor.
 ## Repository Structure
