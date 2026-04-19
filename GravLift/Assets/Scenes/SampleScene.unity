@@ -5000,7 +5000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5268041820907271809, guid: 136a740c5a4618c4193d0e4cd50095df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.102829
+      value: 5.04
       objectReference: {fileID: 0}
     - target: {fileID: 5268041820907271809, guid: 136a740c5a4618c4193d0e4cd50095df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5049,7 +5049,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: linkedDoors.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: 'linkedDoors.Array.data[0]'
@@ -5062,19 +5062,19 @@ PrefabInstance:
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: 'linkedDoors.Array.data[2]'
       value: 
-      objectReference: {fileID: 1324099109}
+      objectReference: {fileID: 1535269939}
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: 'linkedDoors.Array.data[3]'
       value: 
-      objectReference: {fileID: 1324099106}
+      objectReference: {fileID: 1535269936}
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: 'linkedDoors.Array.data[4]'
       value: 
-      objectReference: {fileID: 1535269939}
+      objectReference: {fileID: 1324099109}
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: 'linkedDoors.Array.data[5]'
       value: 
-      objectReference: {fileID: 1535269936}
+      objectReference: {fileID: 1324099106}
     - target: {fileID: 6182184991899477346, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -8846,6 +8846,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8852105642401540202, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8853,6 +8857,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3724266211364880732, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 986707044}
+    - targetCorrespondingSourceObject: {fileID: 3724266211364880732, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 986707049}
   m_SourcePrefab: {fileID: 100100000, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
 --- !u!1 &986707043 stripped
 GameObject:
@@ -8886,6 +8893,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!64 &986707049
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986707043}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3576774009061678071, guid: 8a49eaea80bc31443aa6d3e797e4881a, type: 3}
 --- !u!1 &988793533
 GameObject:
   m_ObjectHideFlags: 0
@@ -9312,6 +9341,10 @@ PrefabInstance:
       value: 0.94146603
       objectReference: {fileID: 0}
     - target: {fileID: 8852105642401540202, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852105642401540202, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
       propertyPath: m_Center.x
       value: -0.010532379
       objectReference: {fileID: 0}
@@ -9330,6 +9363,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3724266211364880732, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1038159758}
+    - targetCorrespondingSourceObject: {fileID: 3724266211364880732, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1038159763}
   m_SourcePrefab: {fileID: 100100000, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
 --- !u!1 &1038159757 stripped
 GameObject:
@@ -9363,6 +9399,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!64 &1038159763
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038159757}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3576774009061678071, guid: 8a49eaea80bc31443aa6d3e797e4881a, type: 3}
 --- !u!1 &1044711889
 GameObject:
   m_ObjectHideFlags: 0
@@ -15376,6 +15434,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8852105642401540202, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15383,6 +15445,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3724266211364880732, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1926202279}
+    - targetCorrespondingSourceObject: {fileID: 3724266211364880732, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1926202284}
   m_SourcePrefab: {fileID: 100100000, guid: a9d541e09f51fb64cb716f1aab90a6c0, type: 3}
 --- !u!1 &1926202278 stripped
 GameObject:
@@ -15416,6 +15481,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!64 &1926202284
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926202278}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3576774009061678071, guid: 8a49eaea80bc31443aa6d3e797e4881a, type: 3}
 --- !u!1 &1928972080
 GameObject:
   m_ObjectHideFlags: 0
@@ -16718,7 +16805,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: linkedDoors.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: 'linkedDoors.Array.data[0]'
@@ -16736,6 +16823,14 @@ PrefabInstance:
       propertyPath: 'linkedDoors.Array.data[3]'
       value: 
       objectReference: {fileID: 1827215516}
+    - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+      propertyPath: 'linkedDoors.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1324099109}
+    - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+      propertyPath: 'linkedDoors.Array.data[5]'
+      value: 
+      objectReference: {fileID: 1324099106}
     - target: {fileID: 6182184991899477346, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
