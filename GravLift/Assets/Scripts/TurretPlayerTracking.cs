@@ -18,7 +18,7 @@ public class TurretPlayerTracking : MonoBehaviour {
     private State currentState = State.Idle;
 
     void Start() {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObj = GameObject.FindGameObjectWithTag("AIMHERE");
         if (playerObj != null) {
             player = playerObj.transform;
         }
