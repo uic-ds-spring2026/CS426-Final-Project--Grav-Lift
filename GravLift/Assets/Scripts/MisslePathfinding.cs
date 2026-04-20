@@ -2,17 +2,27 @@ using UnityEngine;
 
 public class MissilePathfinding : MonoBehaviour
 {
-    private GameObject target;
+    private Transform target;
     private Rigidbody rb;
+    private bool hasPlayedAudio = false; 
     
-    public float rotationSpeed = 5f;
+    public float rotationSpeed = 200f; 
     public float speed = 10f;
+
+    public AudioSource audioSource;
+    public AudioClip closeProximitySound;
+    public float alertDistance = 10f; 
+
+    public int missileDamage = 25; 
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player");
-        rb = GetComponent<Rigidbody>();
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null) {
+            target = playerObj.transform;
+        }
         
+        rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; 
     }
 
@@ -20,11 +30,44 @@ public class MissilePathfinding : MonoBehaviour
     {
         if (target == null) return;
 
-        Vector3 direction = (target.transform.position - rb.position).normalized;
+        
+        Vector3 aimTarget = target.position + new Vector3(0, 1.0f, 0); 
+        Vector3 direction = (aimTarget - rb.position).normalized;
 
         Quaternion lookRotation = Quaternion.LookRotation(direction);
-        rb.MoveRotation(Quaternion.Slerp(rb.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime));
+        Quaternion newRotation = Quaternion.RotateTowards(
+            rb.rotation, 
+            lookRotation, 
+            rotationSpeed * Time.fixedDeltaTime
+        );
+        rb.MoveRotation(newRotation);
 
         rb.MovePosition(rb.position + transform.forward * speed * Time.fixedDeltaTime);
+
+        if (!hasPlayedAudio && audioSource != null && closeProximitySound != null) 
+        {
+            float distanceToTarget = Vector3.Distance(rb.position, target.position);
+            
+            if (distanceToTarget <= alertDistance) 
+            {
+                audioSource.PlayOneShot(closeProximitySound);
+                hasPlayedAudio = true; 
+            }
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerMovement playerScript = collision.gameObject.GetComponentInParent<PlayerMovement>();
+            
+            if (playerScript != null)
+            {
+                playerScript.TakeDamage(missileDamage);
+            }
+        }
+
+        Destroy(gameObject);
     }
 }
