@@ -43,6 +43,9 @@ public class PlayerMovement : MonoBehaviour {
         animation = GetComponent<Animator>();
         camera_sensitivity = camera_sensitivity_while_not_aiming;
         UpdateHealthUI();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void Update() {
@@ -252,7 +255,7 @@ public class PlayerMovement : MonoBehaviour {
             Vector3 upperOrigin = origin + Vector3.up * stepHeight;
             if (!Physics.Raycast(upperOrigin, moveDir, checkDistance)) {
                 if (Physics.Raycast(upperOrigin, Vector3.down, stepHeight + 0.1f)) {
-                    transform.position += Vector3.up * stepHeight;
+                    rb.MovePosition(rb.position + Vector3.up * stepHeight);
                 }
             }
         }

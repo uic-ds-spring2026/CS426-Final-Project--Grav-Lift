@@ -11,7 +11,7 @@ public class GravityFlip : MonoBehaviour {
     private Transform cameraPivot;
 
     private void Start() {
-        player = GameObject.FindGameObjectWithTag("PLAYER"); 
+        player = this.gameObject;
         cameraPivot = GameObject.Find("CameraPivot").transform;
         isGrounded = true;
     }
