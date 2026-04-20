@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float air_movement_percentage;
     [SerializeField] private AudioSource footstepAudioSource;
     [SerializeField] private Camera player_camera;
+    [SerializeField] private float ground_tolerence_time = 0.15f;
 
     public GameObject cannon;
     public GameObject bullet;
@@ -32,6 +33,8 @@ public class PlayerMovement : MonoBehaviour {
     private Transform t;
     private readonly HashSet<int> groundCollisionIds = new HashSet<int>();
     private Vector3 moveInput;
+    private float ground_timer = 0f;
+    
 
     public void Start() {
         rb = GetComponent<Rigidbody>();
@@ -58,6 +61,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        ground_timer -= Time.fixedDeltaTime;
+        if (ground_timer <= 0f) {
+            on_ground = false;
+        }
         ApplyMovement();
     }
 
@@ -95,12 +102,19 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void ApplyMovement() {
+        SmallStepAssist(t.forward * moveInput.z + t.right * moveInput.x);
+        
 
         // Calculate the velocity
         Vector3 targetVelocity = (t.forward * moveInput.z + t.right * moveInput.x) * speed * forward_bonus_speed;
         
         if (!on_ground) {
             targetVelocity *= air_movement_percentage;
+        }
+
+        if (on_ground) {
+            Vector3 push = Vector3.ProjectOnPlane(t.forward * moveInput.z + t.right * moveInput.x, transform.up);
+            rb.AddForce(push * 0.5f, ForceMode.VelocityChange);
         }
 
         // Calculate the difference between our current velocity and next velocity
@@ -123,6 +137,7 @@ public class PlayerMovement : MonoBehaviour {
     private void OnCollisionStay(Collision collision) {
         if (IsGroundCollision(collision)) {
             groundCollisionIds.Add(collision.collider.GetInstanceID());
+            ground_timer = ground_tolerence_time;
             on_ground = true;
         }
     }
@@ -138,16 +153,23 @@ public class PlayerMovement : MonoBehaviour {
         // determine the opposite side of gravity, force up, not down
         float gravityDirection = Mathf.Sign(Physics.gravity.y);
 
+        int validContacts = 0;
+
         foreach (ContactPoint contact in collision.contacts) {
             /**
                 // If gravity is normal (-9.81), gravityDirection is -1. We check if normal.y > 0.4f
                 // Else if gravity is flipped (9.81), gravityDirection is 1. We check if normal.y < -0.4f
                 // literally checks for if we're touching the floor equivalent to be able to move
             */
-            if (contact.normal.y * -gravityDirection > 0.4f) {
-                return true;
+            if (contact.normal.y * -gravityDirection > 0.6f) {
+                validContacts++;
             }
         }
+
+        if (validContacts > 0){
+            return true;
+        }
+
         return false;
     }
 
@@ -212,6 +234,25 @@ public class PlayerMovement : MonoBehaviour {
             } else {
                 health_color.color = Color.green;
                 health_text.color = Color.green;
+            }
+        }
+    }
+    private void SmallStepAssist(Vector3 moveDir) {
+        if (!on_ground || moveDir.magnitude < 0.1f)
+        {
+            return;
+        } 
+
+        Vector3 origin = transform.position + Vector3.up * 0.05f;
+        float checkDistance = 0.4f;
+        float stepHeight = 0.3f; 
+
+        if (Physics.Raycast(origin, moveDir, checkDistance)) {
+            Vector3 upperOrigin = origin + Vector3.up * stepHeight;
+            if (!Physics.Raycast(upperOrigin, moveDir, checkDistance)) {
+                if (Physics.Raycast(upperOrigin, Vector3.down, stepHeight + 0.1f)) {
+                    transform.position += Vector3.up * stepHeight;
+                }
             }
         }
     }

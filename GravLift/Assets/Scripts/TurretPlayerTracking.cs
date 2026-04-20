@@ -94,8 +94,11 @@ public class TurretPlayerTracking : MonoBehaviour {
         fireCooldown -= Time.deltaTime;
 
         if (fireCooldown <= 0.0f) {
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject myClone = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             fireCooldown = 1.0f / fireRate;
+            Destroy(myClone, 5.0f);
         }
+        
     }
+
 }
