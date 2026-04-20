@@ -1,7 +1,8 @@
   Shader "Example/Diffuse Bump" {
     Properties {
       _MainTex ("Texture", 2D) = "white" {}
-      _BumpMap ("Bumpmap", 2D) = "bump" {}
+      _BumpMap ("Normal Map", 2D) = "bump" {}
+
     }
     SubShader {
       Tags { "RenderType" = "Opaque" }
