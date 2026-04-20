@@ -9,8 +9,12 @@ public class GravityFlip : MonoBehaviour {
     private Quaternion targetRotation;
     private bool isGrounded;
 
+    // NEW: camera pivot reference (prevents camera clipping during flip)
+    private Transform cameraPivot;
+
     private void Start() {
         player = GameObject.FindGameObjectWithTag("PLAYER"); 
+        cameraPivot = GameObject.Find("CameraPivot").transform;
         isGrounded = true;
     }
 
@@ -22,6 +26,14 @@ public class GravityFlip : MonoBehaviour {
 
         if (flip_timer > 0.0f) {
             RotatePlayer();
+
+            // NEW: keeps camera from dipping into floor during flip arc
+            if (cameraPivot != null)
+            {
+                Vector3 pos = cameraPivot.localPosition;
+                pos.y = Mathf.Max(pos.y, 0f);
+                cameraPivot.localPosition = pos;
+            }
         }
         
         // Irrelavent now
@@ -39,26 +51,54 @@ public class GravityFlip : MonoBehaviour {
         Physics.gravity = -Physics.gravity;
         upside_down = !upside_down;
         flip_timer = flip_duration;
+
         if (player != null)
         {
+            Rigidbody rb = player.GetComponent<Rigidbody>();
+
+            // move a bit away from ground to stop head clipping
+            Vector3 gravityDir = Physics.gravity.normalized;
+            rb.AddForce(-gravityDir * 2.5f, ForceMode.VelocityChange);
+            rb.position += -gravityDir * 0.05f;
+
             startRotation = player.transform.rotation;
-            targetRotation = startRotation * Quaternion.Euler(0f, 0f, 180f);
+            Vector3 upDir = upside_down ? Vector3.down : Vector3.up;
+            targetRotation = Quaternion.LookRotation(player.transform.forward, upDir);
         }
     }
 
     private void RotatePlayer() {
         if (player != null) {
-            float t = 1f - (flip_timer / flip_duration);
+
+            float t = Mathf.SmoothStep(0f, 1f, 1f - (flip_timer / flip_duration));
             player.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+
+            // NEW: ensures camera does not inherit unsafe midpoint rotation behavior
+            if (cameraPivot != null)
+            {
+                cameraPivot.localRotation = Quaternion.identity;
+            }
         }
+
         flip_timer -= Time.deltaTime;
+
+        if (flip_timer <= 0f && player != null) {
+
+            player.transform.rotation = targetRotation;
+
+            Rigidbody rb = player.GetComponent<Rigidbody>();
+            rb.angularVelocity = Vector3.zero;
+
+            // stop any drift entirely to stop it from slanting
+            Vector3 forward = Vector3.ProjectOnPlane(player.transform.forward, Physics.gravity);
+            player.transform.rotation = Quaternion.LookRotation(forward, -Physics.gravity.normalized);
+        }
     }
 
     private void OnCollisionStay(Collision collision) {
         foreach (ContactPoint contact in collision.contacts) {
-            Vector3 gravityDir = -player.transform.up;
-
-            // if contact is in the direction of gravity, it's ground
+            Vector3 gravityDir = Physics.gravity.normalized;
+            // if if we're touching the ground the same as gravity, its floor, or else its wall
             if (Vector3.Dot(contact.normal, -gravityDir) > 0.5f) {
                 isGrounded = true;
                 return;

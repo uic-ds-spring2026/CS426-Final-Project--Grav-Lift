@@ -112,16 +112,17 @@ public class PlayerMovement : MonoBehaviour {
             targetVelocity *= air_movement_percentage;
         }
 
-        if (on_ground) {
-            Vector3 push = Vector3.ProjectOnPlane(t.forward * moveInput.z + t.right * moveInput.x, transform.up);
-            rb.AddForce(push * 0.5f, ForceMode.VelocityChange);
-        }
+        // keep current velocity but isolate movement plane (prevents edge fighting)
+        Vector3 currentVelocity = rb.linearVelocity;
+
+        // remove only the velocity along movement plane, keep gravity/vertical motion intact
+        Vector3 horizontalVelocity = Vector3.ProjectOnPlane(currentVelocity, transform.up);
 
         // Calculate the difference between our current velocity and next velocity
-        Vector3 velocityChange = targetVelocity - rb.linearVelocity;
-        
-        // No touch y axis
-        velocityChange.y = 0f;
+        Vector3 velocityChange = targetVelocity - horizontalVelocity;
+
+        // No touch y axis (still respects your gravity flip system)
+        velocityChange = Vector3.ProjectOnPlane(velocityChange, transform.up);
 
         // Use velocityChange to ignore rigidBody, it sucks
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
