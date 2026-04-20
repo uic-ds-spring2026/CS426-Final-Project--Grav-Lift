@@ -6,22 +6,18 @@ public class TurretPlayerTracking : MonoBehaviour {
     public Transform firePoint;      
     public GameObject bulletPrefab;
 
-    public float range = 25.0f;
+    public float range = 75.0f;
     public float fireRate = 1.0f;
-    public float rotationSpeed = 5.0f;
+    public float rotationSpeed = 150.0f;
     public float fireAngle = 5.0f;     
 
-    private Transform player;
+    [SerializeField] public Transform player;
     private float fireCooldown = 0.0f;
 
     private enum State { Idle, Tracking, Firing }
     private State currentState = State.Idle;
 
     void Start() {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null) {
-            player = playerObj.transform;
-        }
     }
 
     void Update() {
@@ -77,11 +73,18 @@ public class TurretPlayerTracking : MonoBehaviour {
     }
 
     void TrackPlayer() {
+        // get player position
         Vector3 dir = player.position - turret.position;
 
+        // get the rotation to look at the player
         Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Slerp(turret.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
-        turret.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
+
+        // rotate to the player
+        turret.rotation = Quaternion.RotateTowards(
+            turret.rotation, 
+            lookRotation, 
+            rotationSpeed * Time.deltaTime
+        );
     }
 
     bool IsAimedAtPlayer(float angleThreshold) {
