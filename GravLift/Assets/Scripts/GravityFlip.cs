@@ -8,8 +8,6 @@ public class GravityFlip : MonoBehaviour {
     private Quaternion startRotation;
     private Quaternion targetRotation;
     private bool isGrounded;
-
-    // NEW: camera pivot reference (prevents camera clipping during flip)
     private Transform cameraPivot;
 
     private void Start() {
@@ -27,7 +25,7 @@ public class GravityFlip : MonoBehaviour {
         if (flip_timer > 0.0f) {
             RotatePlayer();
 
-            // NEW: keeps camera from dipping into floor during flip arc
+            // keeps camera from dipping into floor while flipping gravity
             if (cameraPivot != null)
             {
                 Vector3 pos = cameraPivot.localPosition;
@@ -72,8 +70,6 @@ public class GravityFlip : MonoBehaviour {
 
             float t = Mathf.SmoothStep(0f, 1f, 1f - (flip_timer / flip_duration));
             player.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
-
-            // NEW: ensures camera does not inherit unsafe midpoint rotation behavior
             if (cameraPivot != null)
             {
                 cameraPivot.localRotation = Quaternion.identity;
