@@ -1,0 +1,26 @@
+- Really enjoyed the premise, liked the previous puzzle going into the next puzzle
+- Add in the turret
+- Add a line to connect the buttons to the doors for guidance (potientially color coding)
+- Make the button larger in the beginning room
+- Implement the health system
+
+- Add a pause menu
+- z-fighting assets
+- Next tester discovered the connection between the blocks and the buttons
+- Make the box movement less vertical changing
+- Maybe give a hint regarding using the other box
+- Got stuck due to challenge of it
+- Interesting progression, tester started
+- New bug z-fighting 
+
+- Missing damage dealing missles
+
+- Likes the choice of music and dialogue (spacey kind of feeling)
+- Missing cubes in last room and 2nd
+- Improve upon the turrets
+- Really likes the concept
+- Likes the shading effect of the model
+- Visual dial for flipped gravity side (arrow up or down depending on gravity)
+- Indicator to give hint for 2nd room
+- "If only we had another cube"
+- Increase volume 
