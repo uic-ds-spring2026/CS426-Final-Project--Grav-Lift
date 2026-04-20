@@ -60,7 +60,7 @@ public class TurretPlayerTracking : MonoBehaviour {
             case State.Tracking:
                 TrackPlayer();
 
-                if (IsAimedAtPlayer(5.0f)) { // strict to start firing
+                if (IsAimedAtPlayer(10.0f)) { // strict to start firing
                     currentState = State.Firing;
                 }
                 break;
@@ -69,7 +69,7 @@ public class TurretPlayerTracking : MonoBehaviour {
                 TrackPlayer();
                 Fire();
 
-                if (!IsAimedAtPlayer(10.0f)) { // looser to stay firing
+                if (!IsAimedAtPlayer(20.0f)) { // looser to stay firing
                     currentState = State.Tracking;
                 }
                 break;
@@ -94,8 +94,11 @@ public class TurretPlayerTracking : MonoBehaviour {
         fireCooldown -= Time.deltaTime;
 
         if (fireCooldown <= 0.0f) {
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject myClone = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             fireCooldown = 1.0f / fireRate;
+            Destroy(myClone, 8.0f);
         }
+        
     }
+
 }
