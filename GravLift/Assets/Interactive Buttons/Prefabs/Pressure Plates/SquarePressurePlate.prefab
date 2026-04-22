@@ -133,6 +133,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -143,7 +144,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 125
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -232,4 +233,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
+  linkedDoors: []
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
