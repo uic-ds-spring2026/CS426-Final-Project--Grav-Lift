@@ -446,10 +446,10 @@ MonoBehaviour:
   forward_bonus_speed: 1.5
   camera_sensitivity_while_aiming: 0.1
   camera_sensitivity_while_not_aiming: 0.2
-  fov_while_aiming: 0
-  fov_while_not_aiming: 0
+  fov_while_aiming: 45
+  fov_while_not_aiming: 90
   air_movement_percentage: 0.5
-  footstep_audio_source: {fileID: 0}
+  footstep_audio_source: {fileID: 94387996}
   player_camera: {fileID: 1382445304}
   ground_tolerence_time: 0.15
 --- !u!65 &39132944
