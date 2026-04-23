@@ -16,7 +16,7 @@ public class GRAVITY : MonoBehaviour {
 
     private void Start() {
         player = this.gameObject;
-        camera_pivot = GameObject.Find("camera_pivot").transform;
+        camera_pivot = GameObject.Find("CameraPivot").transform;
         is_grounded = true;
     }
 
