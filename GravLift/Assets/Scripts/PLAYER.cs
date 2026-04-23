@@ -1,4 +1,4 @@
-/* CS 426 Final Project
+/* CS 426 Final Project (Grav Lift)
  * Group members: Rafael Maatouk, Fernando Lopez, Andrew Yoe
  * Description: Script that manages player movement
  */
@@ -11,27 +11,93 @@ using UnityEngine.UI;
 using TMPro;
 
 public class PLAYER : MonoBehaviour {
+    /// <summary>
+    /// stores health, max health, and UI information for the player
+    /// </summary>
     [SerializeField] private HEALTH health;
+    /// <summary>
+    /// how fast the player is
+    /// </summary>
     [SerializeField] private float speed;
+    /// <summary>
+    /// how much faster the player can move forwards
+    /// </summary>
     [SerializeField] private float forward_bonus_speed;
+    /// <summary>
+    /// the player's camera sensitivity while aiming down sights
+    /// </summary>
     [SerializeField] private float camera_sensitivity_while_aiming;
+    /// <summary>
+    /// the player's camera sensitivity while not aiming down sights
+    /// </summary>
     [SerializeField] private float camera_sensitivity_while_not_aiming;
-    [SerializeField] private float field_of_view_while_aiming;
-    [SerializeField] private float field_of_view_while_not_aiming;
+    /// <summary>
+    /// the player's field of view while aiming down sights
+    /// </summary>
+    [SerializeField] private float fov_while_aiming;
+    /// <summary>
+    /// the player's field of view while not aiming down sights
+    /// </summary>
+    [SerializeField] private float fov_while_not_aiming;
+    /// <summary>
+    /// slows down the speed of the player while in the air
+    /// </summary>
     [SerializeField] private float air_movement_percentage;
+    /// <summary>
+    /// plays footstep audio while moving
+    /// </summary>
     [SerializeField] private AudioSource footstepAudioSource;
+    /// <summary>
+    /// the first-person player camera
+    /// </summary>
     [SerializeField] private Camera player_camera;
+    /// <summary>
+    /// considers the player on the ground when colliding with it during a short time frame
+    /// </summary>
     [SerializeField] private float ground_tolerence_time;
+    /// <summary>
+    /// animates the player when moving, dancing, or idle
+    /// </summary>
     private Animator animation;
+    /// <summary>
+    /// controls the player camera moving up and down
+    /// </summary>
     private float rotation_x;
+    /// <summary>
+    /// controls the player spawn point when spawning / respawning
+    /// </summary>
     private Vector3 spawn_point;
+    /// <summary>
+    /// tracks whether the player is on the ground
+    /// </summary>
     private bool on_ground;
+    /// <summary>
+    /// tracks the current camera sensitivity
+    /// </summary>
     private float camera_sensitivity;
+    /// <summary>
+    /// holds the player's rigidbody
+    /// </summary>
     private Rigidbody rb;
+    /// <summary>
+    /// holds the player's transform
+    /// </summary>
     private Transform t;
+    /// <summary>
+    /// tracks what floor objects the player is colliding with
+    /// </summary>
     private HashSet<int> groundCollisionIds;
+    /// <summary>
+    /// tracks which direction the player is moving
+    /// </summary>
     private Vector3 moveInput;
+    /// <summary>
+    /// tracks how long the player has been on the ground for
+    /// </summary>
     private float ground_timer;
+    /// <summary>
+    /// holds the UI of the pause menu
+    /// </summary>
     private PAUSEMENU pause_menu;
 
     public void Start() {
@@ -75,6 +141,9 @@ public class PLAYER : MonoBehaviour {
         ApplyMovement();
     }
 
+    /// <summary>
+    /// gathers WASD and B inputs
+    /// </summary>
     private void GatherInput() {
         float moveX = 0f;
         float moveZ = 0f;
@@ -106,6 +175,9 @@ public class PLAYER : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// applies movement based on movement input
+    /// </summary>
     private void ApplyMovement() {
         SmallStepAssist(t.forward * moveInput.z + t.right * moveInput.x);
         
@@ -179,6 +251,9 @@ public class PLAYER : MonoBehaviour {
         return false;
     }
 
+    /// <summary>
+    /// rotates the camera when moving the mouse
+    /// </summary>
     private void Turn() {
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
         float mouseX = mouseDelta.x * camera_sensitivity;
@@ -190,16 +265,26 @@ public class PLAYER : MonoBehaviour {
         player_camera.transform.localRotation = Quaternion.Euler(rotation_x, 0.0f, 0.0f);
     }
 
+    /// <summary>
+    /// decreases the FOV and camera sensitivity
+    /// </summary>
     private void Aim() {
         camera_sensitivity = camera_sensitivity_while_aiming;
-        player_camera.fieldOfView = field_of_view_while_aiming;
+        player_camera.fieldOfView = fov_while_aiming;
     }
 
+    /// <summary>
+    /// increases the FOV and camera sensitivity
+    /// </summary>
     private void StopAiming() {
         camera_sensitivity = camera_sensitivity_while_not_aiming;
-        player_camera.fieldOfView = field_of_view_while_not_aiming;
+        player_camera.fieldOfView = fov_while_not_aiming;
     }
 
+    /// <summary>
+    /// reduces the player's health by int damage
+    /// </summary>
+    /// <param name="damage"> how much the health should reduce </param>
     public void TakeDamage(int damage) {
         health.TakeDamage(damage);
         if (health.IsDead()) {
@@ -207,6 +292,9 @@ public class PLAYER : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// kills and respawns the player
+    /// </summary>
     public void Die() {
         // perhaps add a death screeen?
         t.position = spawn_point;
@@ -214,6 +302,10 @@ public class PLAYER : MonoBehaviour {
         health.ResetHealth();
     }
 
+    /// <summary>
+    /// prevents the player from getting stuck on small steps
+    /// </summary>
+    /// <param name="moveDir"> the direction the player is moving </param>
     private void SmallStepAssist(Vector3 moveDir) {
         if (!on_ground || moveDir.magnitude < 0.1f)
         {

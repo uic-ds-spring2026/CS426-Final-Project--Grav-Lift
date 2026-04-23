@@ -1,3 +1,7 @@
+/* CS 426 Final Project (Grav Lift)
+ * Group members: Rafael Maatouk, Fernando Lopez, Andrew Yoe
+ * Description: Script that manages turret behavior and player tracking
+ */
 
 using UnityEngine;
 

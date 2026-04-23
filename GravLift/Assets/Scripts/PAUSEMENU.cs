@@ -1,4 +1,4 @@
-/* CS 426 Final Project
+/* CS 426 Final Project (Grav Lift)
  * Group members: Rafael Maatouk, Fernando Lopez, Andrew Yoe
  * Description: Script that manages the pause menu and pausing the game
  */
