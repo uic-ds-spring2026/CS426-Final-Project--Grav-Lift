@@ -4,7 +4,7 @@
  */
 using UnityEngine;
 
-public class GRAVITYFLIP : MonoBehaviour {
+public class GRAVITY : MonoBehaviour {
     private bool upside_down = false;
     private float flip_duration = 0.5f;
     private float flip_timer = 0.0f;
