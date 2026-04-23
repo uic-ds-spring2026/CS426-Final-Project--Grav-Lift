@@ -1,3 +1,8 @@
+/* CS 426 Final Project
+ * Group members: Rafael Maatouk, Fernando Lopez, Andrew Yoe
+ * Description: Script that manages player movement
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +10,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerMovement : MonoBehaviour {
-    [SerializeField] private int health;
-    [SerializeField] private int max_health;
-    [SerializeField] private Slider health_bar;
-    [SerializeField] private Image health_color;
-    [SerializeField] private TextMeshProUGUI health_text;
+public class PLAYER : MonoBehaviour {
+    [SerializeField] private HEALTH health;
     [SerializeField] private float speed;
     [SerializeField] private float forward_bonus_speed;
     [SerializeField] private float camera_sensitivity_while_aiming;
@@ -20,46 +21,49 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float air_movement_percentage;
     [SerializeField] private AudioSource footstepAudioSource;
     [SerializeField] private Camera player_camera;
-    [SerializeField] private float ground_tolerence_time = 0.15f;
-
-    public GameObject cannon;
-    public GameObject bullet;
+    [SerializeField] private float ground_tolerence_time;
     private Animator animation;
-    private float rotation_x = 0.0f;
+    private float rotation_x;
     private Vector3 spawn_point;
-    private bool on_ground = true;
+    private bool on_ground;
     private float camera_sensitivity;
     private Rigidbody rb;
     private Transform t;
-    private readonly HashSet<int> groundCollisionIds = new HashSet<int>();
+    private HashSet<int> groundCollisionIds;
     private Vector3 moveInput;
-    private float ground_timer = 0f;
-    
+    private float ground_timer;
+    private PAUSEMENU pause_menu;
 
     public void Start() {
+        animation = GetComponent<Animator>();
+        rotation_x = 0.0f;
+        on_ground = true;
+        camera_sensitivity = camera_sensitivity_while_not_aiming;
         rb = GetComponent<Rigidbody>();
         t = GetComponent<Transform>();
-        health = max_health;
-        animation = GetComponent<Animator>();
-        camera_sensitivity = camera_sensitivity_while_not_aiming;
-        UpdateHealthUI();
-
+        groundCollisionIds = new HashSet<int>();
+        ground_timer = 0.0f;
+        pause_menu = FindAnyObjectByType<PAUSEMENU>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     public void Update() {
-        GatherInput();
-        UpdateHealthUI(); // here for testing purposes. doesn't need to run every frame
-
+        if (pause_menu != null && pause_menu.IsPaused()) {
+            return;
+        }
+        if (Keyboard.current != null) {
+            GatherInput();
+        }
         if (Mouse.current != null && player_camera != null) {
             Turn();
         }
-
-        if (player_camera != null && Mouse.current != null && Mouse.current.rightButton.isPressed) {
-            Aim();
-        } else if (player_camera != null) {
-            StopAiming();
+        if (player_camera != null) {
+            if (Mouse.current != null && Mouse.current.rightButton.isPressed) {
+                Aim();
+            } else {
+                StopAiming();
+            }
         }
     }
 
@@ -72,8 +76,6 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void GatherInput() {
-        if (Keyboard.current == null) return;
-
         float moveX = 0f;
         float moveZ = 0f;
 
@@ -199,9 +201,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void TakeDamage(int damage) {
-        health -= damage;
-        UpdateHealthUI();
-        if (health <= 0) {
+        health.TakeDamage(damage);
+        if (health.IsDead()) {
             Die();
         }
     }
@@ -210,37 +211,9 @@ public class PlayerMovement : MonoBehaviour {
         // perhaps add a death screeen?
         t.position = spawn_point;
         rb.linearVelocity = Vector3.zero;
-        health = max_health;
-        UpdateHealthUI();
+        health.ResetHealth();
     }
 
-    /* UPDATES THE HEALTH BAR AND TEXT
-     */
-    private void UpdateHealthUI() {
-        // controls the health bar
-        if (health_bar != null) {
-            health_bar.value = (float) health / max_health;
-        }
-
-        // controls the health text
-        if (health_text != null) {
-            health_text.text = "HP: " + health.ToString() + " / " + max_health.ToString();
-        }
-
-        // controls the health color
-        if (health_color != null && health_text != null) {
-            if (health <= 20) {
-                health_color.color = Color.red;
-                health_text.color = Color.red;
-            } else if (health <= 50) {
-                health_color.color = Color.yellow;
-                health_text.color = Color.yellow;
-            } else {
-                health_color.color = Color.green;
-                health_text.color = Color.green;
-            }
-        }
-    }
     private void SmallStepAssist(Vector3 moveDir) {
         if (!on_ground || moveDir.magnitude < 0.1f)
         {

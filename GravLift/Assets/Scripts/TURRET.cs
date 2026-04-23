@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class TurretPlayerTracking : MonoBehaviour {
+public class TURRET : MonoBehaviour {
     public Transform turret;          
     public Transform firePoint;      
     public GameObject bulletPrefab;
@@ -16,9 +16,6 @@ public class TurretPlayerTracking : MonoBehaviour {
 
     private enum State { Idle, Tracking, Firing }
     private State currentState = State.Idle;
-
-    void Start() {
-    }
 
     void Update() {
         if (player == null) {
@@ -101,7 +98,5 @@ public class TurretPlayerTracking : MonoBehaviour {
             fireCooldown = 1.0f / fireRate;
             Destroy(myClone, 8.0f);
         }
-        
     }
-
 }

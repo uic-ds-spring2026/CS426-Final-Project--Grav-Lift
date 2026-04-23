@@ -1,24 +1,28 @@
+/* CS 426 Final Project
+ * Group members: Rafael Maatouk, Fernando Lopez, Andrew Yoe
+ * Description: Script that manages flipping gravity
+ */
 using UnityEngine;
 
-public class GravityFlip : MonoBehaviour {
+public class GRAVITYFLIP : MonoBehaviour {
     private bool upside_down = false;
     private float flip_duration = 0.5f;
     private float flip_timer = 0.0f;
     private GameObject player;
-    private Quaternion startRotation;
-    private Quaternion targetRotation;
-    private bool isGrounded;
-    private Transform cameraPivot;
+    private Quaternion start_rotation;
+    private Quaternion target_rotation;
+    private bool is_grounded;
+    private Transform camera_pivot;
 
     private void Start() {
         player = this.gameObject;
-        cameraPivot = GameObject.Find("CameraPivot").transform;
-        isGrounded = true;
+        camera_pivot = GameObject.Find("camera_pivot").transform;
+        is_grounded = true;
     }
 
     private void Update() {
         
-        if (Input.GetKeyDown(KeyCode.Space) && flip_timer <= 0.0f && isGrounded) { 
+        if (Input.GetKeyDown(KeyCode.Space) && flip_timer <= 0.0f && is_grounded) { 
             FlipGravity();
         }
 
@@ -26,11 +30,10 @@ public class GravityFlip : MonoBehaviour {
             RotatePlayer();
 
             // keeps camera from dipping into floor while flipping gravity
-            if (cameraPivot != null)
-            {
-                Vector3 pos = cameraPivot.localPosition;
+            if (camera_pivot != null) {
+                Vector3 pos = camera_pivot.localPosition;
                 pos.y = Mathf.Max(pos.y, 0f);
-                cameraPivot.localPosition = pos;
+                camera_pivot.localPosition = pos;
             }
         }
         
@@ -55,32 +58,29 @@ public class GravityFlip : MonoBehaviour {
             Rigidbody rb = player.GetComponent<Rigidbody>();
 
             // move a bit away from ground to stop head clipping
-            Vector3 gravityDir = Physics.gravity.normalized;
-            rb.AddForce(-gravityDir * 2.5f, ForceMode.VelocityChange);
-            rb.position += -gravityDir * 0.05f;
+            Vector3 gravity_direction = Physics.gravity.normalized;
+            rb.AddForce(-gravity_direction * 2.5f, ForceMode.VelocityChange);
+            rb.position += -gravity_direction * 0.05f;
 
-            startRotation = player.transform.rotation;
-            Vector3 upDir = upside_down ? Vector3.down : Vector3.up;
-            targetRotation = Quaternion.LookRotation(player.transform.forward, upDir);
+            start_rotation = player.transform.rotation;
+            Vector3 up_direction = upside_down ? Vector3.down : Vector3.up;
+            target_rotation = Quaternion.LookRotation(player.transform.forward, up_direction);
         }
     }
 
     private void RotatePlayer() {
         if (player != null) {
-
             float t = Mathf.SmoothStep(0f, 1f, 1f - (flip_timer / flip_duration));
-            player.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
-            if (cameraPivot != null)
-            {
-                cameraPivot.localRotation = Quaternion.identity;
+            player.transform.rotation = Quaternion.Slerp(start_rotation, target_rotation, t);
+            if (camera_pivot != null) {
+                camera_pivot.localRotation = Quaternion.identity;
             }
         }
 
         flip_timer -= Time.deltaTime;
 
         if (flip_timer <= 0f && player != null) {
-
-            player.transform.rotation = targetRotation;
+            player.transform.rotation = target_rotation;
 
             Rigidbody rb = player.GetComponent<Rigidbody>();
             rb.angularVelocity = Vector3.zero;
@@ -93,16 +93,16 @@ public class GravityFlip : MonoBehaviour {
 
     private void OnCollisionStay(Collision collision) {
         foreach (ContactPoint contact in collision.contacts) {
-            Vector3 gravityDir = Physics.gravity.normalized;
+            Vector3 gravity_direction = Physics.gravity.normalized;
             // if if we're touching the ground the same as gravity, its floor, or else its wall
-            if (Vector3.Dot(contact.normal, -gravityDir) > 0.5f) {
-                isGrounded = true;
+            if (Vector3.Dot(contact.normal, -gravity_direction) > 0.5f) {
+                is_grounded = true;
                 return;
             }
         }
     }
 
     private void OnCollisionExit(Collision collision) {
-        isGrounded = false;
+        is_grounded = false;
     }
 }
