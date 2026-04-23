@@ -5,7 +5,7 @@
 using UnityEngine;
 
 public class GRAVITY : MonoBehaviour {
-    private bool upside_down = false;
+    private bool is_upside_down = false;
     private float flip_duration = 0.5f;
     private float flip_timer = 0.0f;
     private GameObject player;
@@ -42,15 +42,18 @@ public class GRAVITY : MonoBehaviour {
         // if (flip_timer <= 0f && player != null) {
         //     Vector3 currentRotation = player.transform.eulerAngles;
         //     float finalZRotation = 0.0f;
-        //     if (upside_down) finalZRotation = 180.0f;
+        //     if (is_upside_down) finalZRotation = 180.0f;
         //     else finalZRotation = 0.0f;
         //     player.transform.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, finalZRotation);
         // }
     }
 
+    /// <summary>
+    /// flips the gravity 180 degrees
+    /// </summary>
     private void FlipGravity() {
         Physics.gravity = -Physics.gravity;
-        upside_down = !upside_down;
+        is_upside_down = !is_upside_down;
         flip_timer = flip_duration;
 
         if (player != null)
@@ -63,11 +66,14 @@ public class GRAVITY : MonoBehaviour {
             rb.position += -gravity_direction * 0.05f;
 
             start_rotation = player.transform.rotation;
-            Vector3 up_direction = upside_down ? Vector3.down : Vector3.up;
+            Vector3 up_direction = is_upside_down ? Vector3.down : Vector3.up;
             target_rotation = Quaternion.LookRotation(player.transform.forward, up_direction);
         }
     }
 
+    /// <summary>
+    /// rotates the player 180 degrees
+    /// </summary>
     private void RotatePlayer() {
         if (player != null) {
             float t = Mathf.SmoothStep(0f, 1f, 1f - (flip_timer / flip_duration));
@@ -104,5 +110,13 @@ public class GRAVITY : MonoBehaviour {
 
     private void OnCollisionExit(Collision collision) {
         is_grounded = false;
+    }
+
+    /// <summary>
+    /// getter function for is_upside_down
+    /// </summary>
+    /// <returns> is_upside_down </returns>
+    public bool IsUpsideDown() {
+        return is_upside_down;
     }
 }
