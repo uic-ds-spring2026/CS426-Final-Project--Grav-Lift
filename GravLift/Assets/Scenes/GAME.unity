@@ -441,11 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ebc079459c88645bdf386babff251a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: 100
-  max_health: 100
-  health_bar: {fileID: 530873635}
-  health_color: {fileID: 1262339450}
-  health_text: {fileID: 683545995}
+  health: {fileID: 0}
   speed: 15
   forward_bonus_speed: 1.5
   camera_sensitivity_while_aiming: 0.1
@@ -456,8 +452,6 @@ MonoBehaviour:
   footstepAudioSource: {fileID: 94387996}
   player_camera: {fileID: 1382445304}
   ground_tolerence_time: 0.15
-  cannon: {fileID: 0}
-  bullet: {fileID: 4674079643118073747, guid: 1a5684928bc778144b13a8a5479d2cb7, type: 3}
 --- !u!65 &39132944
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5887,7 +5881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &472141952
 MonoBehaviour:
   m_ObjectHideFlags: 0
