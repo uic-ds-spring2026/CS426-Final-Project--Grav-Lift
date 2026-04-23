@@ -441,15 +441,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ebc079459c88645bdf386babff251a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: {fileID: 0}
+  health: {fileID: 1875003592}
   speed: 15
   forward_bonus_speed: 1.5
   camera_sensitivity_while_aiming: 0.1
   camera_sensitivity_while_not_aiming: 0.2
-  field_of_view_while_aiming: 45
-  field_of_view_while_not_aiming: 90
+  fov_while_aiming: 0
+  fov_while_not_aiming: 0
   air_movement_percentage: 0.5
-  footstepAudioSource: {fileID: 94387996}
+  footstep_audio_source: {fileID: 0}
   player_camera: {fileID: 1382445304}
   ground_tolerence_time: 0.15
 --- !u!65 &39132944

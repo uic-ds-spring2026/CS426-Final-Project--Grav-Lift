@@ -46,7 +46,7 @@ public class PLAYER : MonoBehaviour {
     /// <summary>
     /// plays footstep audio while moving
     /// </summary>
-    [SerializeField] private AudioSource footstepAudioSource;
+    [SerializeField] private AudioSource footstep_audio_source;
     /// <summary>
     /// the first-person player camera
     /// </summary>
@@ -90,7 +90,7 @@ public class PLAYER : MonoBehaviour {
     /// <summary>
     /// tracks which direction the player is moving
     /// </summary>
-    private Vector3 moveInput;
+    private Vector3 move_input;
     /// <summary>
     /// tracks how long the player has been on the ground for
     /// </summary>
@@ -154,24 +154,24 @@ public class PLAYER : MonoBehaviour {
         if (Keyboard.current.dKey.isPressed) moveX += 1f;
 
         // normalize values to make it more realistic, forward is NOT the same speed as diagonal
-        moveInput = new Vector3(moveX, 0f, moveZ).normalized;
+        move_input = new Vector3(moveX, 0f, moveZ).normalized;
 
-        if (moveInput.magnitude > 0.1f) {
+        if (move_input.magnitude > 0.1f) {
             animation.Play("Running");
             
-            if (on_ground && !footstepAudioSource.isPlaying) {
-                footstepAudioSource.Play();
-            } else if (!on_ground && footstepAudioSource.isPlaying) {
-                footstepAudioSource.Stop();
+            if (on_ground && !footstep_audio_source.isPlaying) {
+                footstep_audio_source.Play();
+            } else if (!on_ground && footstep_audio_source.isPlaying) {
+                footstep_audio_source.Stop();
             }
             
         } else if (Keyboard.current.bKey.isPressed) {
             animation.Play("Dancing");
-            if (footstepAudioSource.isPlaying) footstepAudioSource.Stop();
+            if (footstep_audio_source.isPlaying) footstep_audio_source.Stop();
             
         } else {
             animation.Play("Idle");
-            if (footstepAudioSource.isPlaying) footstepAudioSource.Stop();
+            if (footstep_audio_source.isPlaying) footstep_audio_source.Stop();
         }
     }
 
@@ -179,11 +179,11 @@ public class PLAYER : MonoBehaviour {
     /// applies movement based on movement input
     /// </summary>
     private void ApplyMovement() {
-        SmallStepAssist(t.forward * moveInput.z + t.right * moveInput.x);
+        SmallStepAssist(t.forward * move_input.z + t.right * move_input.x);
         
 
         // Calculate the velocity
-        Vector3 targetVelocity = (t.forward * moveInput.z + t.right * moveInput.x) * speed * forward_bonus_speed;
+        Vector3 targetVelocity = (t.forward * move_input.z + t.right * move_input.x) * speed * forward_bonus_speed;
         
         if (!on_ground) {
             targetVelocity *= air_movement_percentage;
