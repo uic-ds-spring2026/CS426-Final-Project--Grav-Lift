@@ -50,6 +50,8 @@ public class GravityFlip : MonoBehaviour {
         upside_down = !upside_down;
         flip_timer = flip_duration;
 
+        player.GetComponent<PlayerMovement>().gravityFlipped = true; //used in player movement to restrict air movement
+
         if (player != null)
         {
             Rigidbody rb = player.GetComponent<Rigidbody>();

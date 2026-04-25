@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour {
     private readonly HashSet<int> groundCollisionIds = new HashSet<int>();
     private Vector3 moveInput;
     private float ground_timer = 0f;
+    public bool gravityFlipped = false; // needs access from GravityFlip so this is a public variable
     
 
     public void Start() {
@@ -77,10 +78,10 @@ public class PlayerMovement : MonoBehaviour {
         float moveX = 0f;
         float moveZ = 0f;
 
-        if (Keyboard.current.wKey.isPressed) moveZ += 1f;
-        if (Keyboard.current.sKey.isPressed) moveZ -= 1f;
-        if (Keyboard.current.aKey.isPressed) moveX -= 1f;
-        if (Keyboard.current.dKey.isPressed) moveX += 1f;
+        if (Keyboard.current.wKey.isPressed) moveZ += 1.2f;
+        if (Keyboard.current.sKey.isPressed) moveZ -= 1.2f;
+        if (Keyboard.current.aKey.isPressed) moveX -= 1.2f;
+        if (Keyboard.current.dKey.isPressed) moveX += 1.2f;
 
         // normalize values to make it more realistic, forward is NOT the same speed as diagonal
         moveInput = new Vector3(moveX, 0f, moveZ).normalized;
@@ -105,15 +106,22 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void ApplyMovement() {
+
+        if (!on_ground && gravityFlipped)
+        {
+            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
+            return; //This disables movement in the air only if the gravity flip was initiated
+        }
+
         SmallStepAssist(t.forward * moveInput.z + t.right * moveInput.x);
         
 
         // Calculate the velocity
         Vector3 targetVelocity = (t.forward * moveInput.z + t.right * moveInput.x) * speed * forward_bonus_speed;
         
-        if (!on_ground) {
-            targetVelocity *= air_movement_percentage;
-        }
+        // if (!on_ground) {
+        //     targetVelocity *= air_movement_percentage;
+        // }
 
         // keep current velocity but isolate movement plane (prevents edge fighting)
         Vector3 currentVelocity = rb.linearVelocity;
@@ -124,7 +132,7 @@ public class PlayerMovement : MonoBehaviour {
         // Calculate the difference between our current velocity and next velocity
         Vector3 velocityChange = targetVelocity - horizontalVelocity;
 
-        // No touch y axis (still respects your gravity flip system)
+        // No touch y axis 
         velocityChange = Vector3.ProjectOnPlane(velocityChange, transform.up);
 
         // Use velocityChange to ignore rigidBody, it sucks
@@ -143,7 +151,11 @@ public class PlayerMovement : MonoBehaviour {
             groundCollisionIds.Add(collision.collider.GetInstanceID());
             ground_timer = ground_tolerence_time;
             on_ground = true;
+            if (gravityFlipped) {
+                gravityFlipped = false;  //Now that we are on the ground, if it was from a Gravity Flip, we mark it.
+            }
         }
+        
     }
 
     private void OnCollisionExit(Collision collision) {
@@ -246,18 +258,28 @@ public class PlayerMovement : MonoBehaviour {
         {
             return;
         } 
-
+        //Setup for raycasting, makes sure we can detect flat or ramped surfaces
         Vector3 origin = transform.position + Vector3.up * 0.05f;
         float checkDistance = 0.4f;
         float stepHeight = 0.3f; 
+        RaycastHit hit; 
 
-        if (Physics.Raycast(origin, moveDir, checkDistance)) {
-            Vector3 upperOrigin = origin + Vector3.up * stepHeight;
-            if (!Physics.Raycast(upperOrigin, moveDir, checkDistance)) {
-                if (Physics.Raycast(upperOrigin, Vector3.down, stepHeight + 0.1f)) {
-                    rb.MovePosition(rb.position + Vector3.up * stepHeight);
+        if (Physics.Raycast(origin, moveDir, out hit, checkDistance)) { //Performs the raycast and sets hit at the same time
+            // if its a relatively small flat height difference, step up it
+            if (hit.normal.y > 0.5f) {
+                Vector3 upperOrigin = origin + Vector3.up * stepHeight;
+                if (!Physics.Raycast(upperOrigin, moveDir, checkDistance)) {
+                    if (Physics.Raycast(upperOrigin, Vector3.down, stepHeight + 0.1f)) {
+                        rb.MovePosition(rb.position + Vector3.up * stepHeight);
+                    }
                 }
             }
+            // if its a ramp of some kind, add some speed when going down it to emulate going downhill
+            else if (hit.normal.y < 0.5f) {
+                float slideFactor = 0.5f;  // Adds extra speed to slopes to feel less chunky
+                rb.AddForce(Vector3.ProjectOnPlane(Physics.gravity, hit.normal) * slideFactor, ForceMode.Acceleration);
+            }
+            // we didn't make one for uphill as that would be a bit annoying to work with
         }
     }
 }
