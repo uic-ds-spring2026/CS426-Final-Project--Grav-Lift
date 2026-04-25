@@ -7,7 +7,7 @@ public class TurretPlayerTracking : MonoBehaviour {
     public GameObject bulletPrefab;
 
     public float range = 75.0f;
-    public float fireRate = 1.0f;
+    public float fireRate = 3.0f;
     public float rotationSpeed = 150.0f;
     public float fireAngle = 5.0f;     
 
