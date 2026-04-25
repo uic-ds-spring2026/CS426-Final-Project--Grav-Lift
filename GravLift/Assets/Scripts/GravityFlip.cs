@@ -33,19 +33,39 @@ public class GravityFlip : MonoBehaviour {
                 cameraPivot.localPosition = pos;
             }
         }
-        
-        // Irrelavent now
-        // // set the z axis to 180 or 0 depending on if we're upside down or not
-        // if (flip_timer <= 0f && player != null) {
-        //     Vector3 currentRotation = player.transform.eulerAngles;
-        //     float finalZRotation = 0.0f;
-        //     if (upside_down) finalZRotation = 180.0f;
-        //     else finalZRotation = 0.0f;
-        //     player.transform.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, finalZRotation);
-        // }
+
     }
 
     private void FlipGravity() {
+        if (!isGrounded) return; //We already have ways to prevent this when in the air, but just in case
+
+        //Since one of the levels has a Sliding block, we don't want players to flip while standing on it
+        // and crush themselves, so we added this segment to FlipGravity() to be sure they can't do that
+        float checkDistance = 10.0f; //theres no other sliding block, this can afford to be larger than average to be safe
+        RaycastHit hit;
+
+        Vector3[] raycastDirections; //Since we flip gravity, vector3 up and down swap so we need to account for that
+        if (Physics.gravity.y > 0) {
+            // Normal gravity, check both in case
+            raycastDirections = new Vector3[] { Vector3.up, Vector3.down };
+        } else {
+            // Flipped gravity, check both in case
+            raycastDirections = new Vector3[] { Vector3.down, Vector3.up };
+        }
+
+        Vector3 origin = transform.position + (upside_down ? Vector3.down : Vector3.up) * 0.1f;  // Offset from origin according to gravity direction
+
+        foreach (Vector3 direction in raycastDirections) {
+            if (Physics.Raycast(origin, direction, out hit, checkDistance)) {
+                if (hit.collider.CompareTag("SLIDINGBLOCK")) {
+                    // if the Sliding Block is on our same axis (above or below us depending on gravity), skip the flip
+                    Debug.Log("Blocked gravity flip: standing on SLIDINGBLOCK.");
+                    return;
+                }
+            }
+        }
+
+        //Now we move onto the actual gravity flip
         Physics.gravity = -Physics.gravity;
         upside_down = !upside_down;
         flip_timer = flip_duration;

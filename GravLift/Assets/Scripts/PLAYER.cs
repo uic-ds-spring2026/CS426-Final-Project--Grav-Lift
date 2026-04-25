@@ -263,13 +263,14 @@ public class PlayerMovement : MonoBehaviour {
         float checkDistance = 0.4f;
         float stepHeight = 0.3f; 
         RaycastHit hit; 
+        Vector3 raycastDirection = Physics.gravity.y > 0 ? Vector3.down : Vector3.up; //since we flip gravity, we need a direction for each side
 
         if (Physics.Raycast(origin, moveDir, out hit, checkDistance)) { //Performs the raycast and sets hit at the same time
             // if its a relatively small flat height difference, step up it
             if (hit.normal.y > 0.5f) {
                 Vector3 upperOrigin = origin + Vector3.up * stepHeight;
                 if (!Physics.Raycast(upperOrigin, moveDir, checkDistance)) {
-                    if (Physics.Raycast(upperOrigin, Vector3.down, stepHeight + 0.1f)) {
+                    if (Physics.Raycast(upperOrigin, raycastDirection, stepHeight + 0.1f)) {
                         rb.MovePosition(rb.position + Vector3.up * stepHeight);
                     }
                 }
