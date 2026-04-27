@@ -153,7 +153,7 @@ public class PAUSEMENU : MonoBehaviour {
 
     private void UpdateSensText(float sens) {
         if (sens_text != null) {
-            sens_text.text = "Sensitivity: " + sens.ToString("F2");
+            sens_text.text = "Sensitivity: " + Mathf.RoundToInt(sens * 100) + "%";
         }
     }
 }
