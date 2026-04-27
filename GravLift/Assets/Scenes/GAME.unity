@@ -2184,7 +2184,7 @@ PrefabInstance:
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: 'linkedDoors.Array.data[1]'
       value: 
-      objectReference: {fileID: 425148083}
+      objectReference: {fileID: 1777739003}
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: 'linkedDoors.Array.data[2]'
       value: 
