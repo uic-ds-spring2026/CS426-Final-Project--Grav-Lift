@@ -6,61 +6,127 @@ using UnityEngine.UI;
 using TMPro;
 
 public class PlayerMovement : MonoBehaviour {
-    [SerializeField] private int health;
-    [SerializeField] private int max_health;
-    [SerializeField] private Slider health_bar;
-    [SerializeField] private Image health_color;
-    [SerializeField] private TextMeshProUGUI health_text;
+    /// <summary>
+    /// stores health, max health, and UI information for the player
+    /// </summary>
+    [SerializeField] private HEALTH health;
+    /// <summary>
+    /// how fast the player is
+    /// </summary>
     [SerializeField] private float speed;
+    /// <summary>
+    /// how much faster the player can move forwards
+    /// </summary>
     [SerializeField] private float forward_bonus_speed;
+    /// <summary>
+    /// the player's camera sensitivity while aiming down sights
+    /// </summary>
     [SerializeField] private float camera_sensitivity_while_aiming;
+    /// <summary>
+    /// the player's camera sensitivity while not aiming down sights
+    /// </summary>
     [SerializeField] private float camera_sensitivity_while_not_aiming;
-    [SerializeField] private float field_of_view_while_aiming;
-    [SerializeField] private float field_of_view_while_not_aiming;
+    /// <summary>
+    /// the player's field of view while aiming down sights
+    /// </summary>
+    [SerializeField] private float fov_while_aiming;
+    /// <summary>
+    /// the player's field of view while not aiming down sights
+    /// </summary>
+    [SerializeField] private float fov_while_not_aiming;
+    /// <summary>
+    /// slows down the speed of the player while in the air
+    /// </summary>
     [SerializeField] private float air_movement_percentage;
-    [SerializeField] private AudioSource footstepAudioSource;
+    /// <summary>
+    /// plays footstep audio while moving
+    /// </summary>
+    [SerializeField] private AudioSource footstep_audio_source;
+    /// <summary>
+    /// the first-person player camera
+    /// </summary>
     [SerializeField] private Camera player_camera;
-    [SerializeField] private float ground_tolerence_time = 0.15f;
-
-    public GameObject cannon;
-    public GameObject bullet;
+    /// <summary>
+    /// considers the player on the ground when colliding with it during a short time frame
+    /// </summary>
+    [SerializeField] private float ground_tolerence_time;
+    /// <summary>
+    /// animates the player when moving, dancing, or idle
+    /// </summary>
     private Animator animation;
-    private float rotation_x = 0.0f;
+    /// <summary>
+    /// controls the player camera moving up and down
+    /// </summary>
+    private float rotation_x;
+    /// <summary>
+    /// controls the player spawn point when spawning / respawning
+    /// </summary>
     private Vector3 spawn_point;
-    private bool on_ground = true;
+    /// <summary>
+    /// tracks whether the player is on the ground
+    /// </summary>
+    private bool on_ground;
+    /// <summary>
+    /// tracks the current camera sensitivity
+    /// </summary>
     private float camera_sensitivity;
+    /// <summary>
+    /// holds the player's rigidbody
+    /// </summary>
     private Rigidbody rb;
+    /// <summary>
+    /// holds the player's transform
+    /// </summary>
     private Transform t;
-    private readonly HashSet<int> groundCollisionIds = new HashSet<int>();
-    private Vector3 moveInput;
-    private float ground_timer = 0f;
+    /// <summary>
+    /// tracks what floor objects the player is colliding with
+    /// </summary>
+    private HashSet<int> groundCollisionIds;
+    /// <summary>
+    /// tracks which direction the player is moving
+    /// </summary>
+    private Vector3 move_input;
+    /// <summary>
+    /// tracks how long the player has been on the ground for
+    /// </summary>
+    private float ground_timer;
+    /// <summary>
+    /// holds the UI of the pause menu
+    /// </summary>
+    private PAUSEMENU pause_menu;
     public bool gravityFlipped = false; // needs access from GravityFlip so this is a public variable
     
 
     public void Start() {
+        animation = GetComponent<Animator>();
+        rotation_x = 0.0f;
+        on_ground = true;
+        camera_sensitivity = camera_sensitivity_while_not_aiming;
         rb = GetComponent<Rigidbody>();
         t = GetComponent<Transform>();
-        health = max_health;
-        animation = GetComponent<Animator>();
-        camera_sensitivity = camera_sensitivity_while_not_aiming;
-        UpdateHealthUI();
-
+        groundCollisionIds = new HashSet<int>();
+        ground_timer = 0.0f;
+        pause_menu = FindAnyObjectByType<PAUSEMENU>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     public void Update() {
-        GatherInput();
-        UpdateHealthUI(); // here for testing purposes. doesn't need to run every frame
-
+        if (pause_menu != null && pause_menu.IsPaused()) {
+            return;
+        }
+        if (Keyboard.current != null) {
+            GatherInput();
+        }
         if (Mouse.current != null && player_camera != null) {
             Turn();
         }
-
-        if (player_camera != null && Mouse.current != null && Mouse.current.rightButton.isPressed) {
-            Aim();
-        } else if (player_camera != null) {
-            StopAiming();
+        if (player_camera != null) {
+            if (Mouse.current != null && Mouse.current.rightButton.isPressed) {
+                Aim();
+            } else {
+                StopAiming();
+            }
         }
     }
 
@@ -84,24 +150,24 @@ public class PlayerMovement : MonoBehaviour {
         if (Keyboard.current.dKey.isPressed) moveX += 1.2f;
 
         // normalize values to make it more realistic, forward is NOT the same speed as diagonal
-        moveInput = new Vector3(moveX, 0f, moveZ).normalized;
+        move_input = new Vector3(moveX, 0f, moveZ).normalized;
 
-        if (moveInput.magnitude > 0.1f) {
+        if (move_input.magnitude > 0.1f) {
             animation.Play("Running");
             
-            if (on_ground && !footstepAudioSource.isPlaying) {
-                footstepAudioSource.Play();
-            } else if (!on_ground && footstepAudioSource.isPlaying) {
-                footstepAudioSource.Stop();
+            if (on_ground && !footstep_audio_source.isPlaying) {
+                footstep_audio_source.Play();
+            } else if (!on_ground && footstep_audio_source.isPlaying) {
+                footstep_audio_source.Stop();
             }
             
         } else if (Keyboard.current.bKey.isPressed) {
             animation.Play("Dancing");
-            if (footstepAudioSource.isPlaying) footstepAudioSource.Stop();
+            if (footstep_audio_source.isPlaying) footstep_audio_source.Stop();
             
         } else {
             animation.Play("Idle");
-            if (footstepAudioSource.isPlaying) footstepAudioSource.Stop();
+            if (footstep_audio_source.isPlaying) footstep_audio_source.Stop();
         }
     }
 
@@ -113,11 +179,11 @@ public class PlayerMovement : MonoBehaviour {
             return; //This disables movement in the air only if the gravity flip was initiated
         }
 
-        SmallStepAssist(t.forward * moveInput.z + t.right * moveInput.x);
+        SmallStepAssist(t.forward * move_input.z + t.right * move_input.x);
         
 
         // Calculate the velocity
-        Vector3 targetVelocity = (t.forward * moveInput.z + t.right * moveInput.x) * speed * forward_bonus_speed;
+        Vector3 targetVelocity = (t.forward * move_input.z + t.right * move_input.x) * speed * forward_bonus_speed;
         
         // if (!on_ground) {
         //     targetVelocity *= air_movement_percentage;
@@ -202,57 +268,35 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Aim() {
         camera_sensitivity = camera_sensitivity_while_aiming;
-        player_camera.fieldOfView = field_of_view_while_aiming;
+        player_camera.fieldOfView = fov_while_aiming;
     }
 
     private void StopAiming() {
         camera_sensitivity = camera_sensitivity_while_not_aiming;
-        player_camera.fieldOfView = field_of_view_while_not_aiming;
+        player_camera.fieldOfView = fov_while_not_aiming;
     }
 
+    /// <summary>
+    /// reduces the player's health by int damage
+    /// </summary>
+    /// <param name="damage"> how much the health should reduce </param>
     public void TakeDamage(int damage) {
-        health -= damage;
-        UpdateHealthUI();
-        if (health <= 0) {
+        health.TakeDamage(damage);
+        if (health.IsDead()) {
             Die();
         }
     }
 
+    /// <summary>
+    /// kills and respawns the player
+    /// </summary>
     public void Die() {
         // perhaps add a death screeen?
         t.position = spawn_point;
         rb.linearVelocity = Vector3.zero;
-        health = max_health;
-        UpdateHealthUI();
+        health.ResetHealth();
     }
 
-    /* UPDATES THE HEALTH BAR AND TEXT
-     */
-    private void UpdateHealthUI() {
-        // controls the health bar
-        if (health_bar != null) {
-            health_bar.value = (float) health / max_health;
-        }
-
-        // controls the health text
-        if (health_text != null) {
-            health_text.text = "HP: " + health.ToString() + " / " + max_health.ToString();
-        }
-
-        // controls the health color
-        if (health_color != null && health_text != null) {
-            if (health <= 20) {
-                health_color.color = Color.red;
-                health_text.color = Color.red;
-            } else if (health <= 50) {
-                health_color.color = Color.yellow;
-                health_text.color = Color.yellow;
-            } else {
-                health_color.color = Color.green;
-                health_text.color = Color.green;
-            }
-        }
-    }
     private void SmallStepAssist(Vector3 moveDir) {
         if (!on_ground || moveDir.magnitude < 0.1f)
         {
