@@ -13,7 +13,7 @@ public class MissilePathfinding : MonoBehaviour
     public AudioClip closeProximitySound;
     public float alertDistance = 10f; 
 
-    public int missileDamage = 25; 
+    public int missileDamage = 15; 
     public GameObject explosionPrefab;
 
     void Start()
