@@ -5131,6 +5131,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &133912679
 AudioSource:
@@ -7155,6 +7158,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+      propertyPath: useRoomManager
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: linkedDoors.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -8985,6 +8992,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &193953448
 AudioSource:
@@ -11608,6 +11618,17 @@ PrefabInstance:
       addedObject: {fileID: 316507675}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+--- !u!114 &262183426 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+  m_PrefabInstance: {fileID: 1883007483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51dd7c2409731224cbaf43c4cdd5f633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &264620377
 GameObject:
   m_ObjectHideFlags: 0
@@ -12717,6 +12738,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &291993931
 AudioSource:
@@ -13175,6 +13199,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &298833095
 AudioSource:
@@ -14697,6 +14724,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &316507677
 AudioSource:
@@ -18460,6 +18490,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &417078902
 AudioSource:
@@ -19779,6 +19812,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &449720940
 AudioSource:
@@ -22864,6 +22900,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+      propertyPath: useRoomManager
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: linkedDoors.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -25453,6 +25493,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &610632434
 AudioSource:
@@ -25965,6 +26008,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &625262588
 AudioSource:
@@ -27737,6 +27783,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &667970996
 AudioSource:
@@ -36793,6 +36842,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &875761690
 AudioSource:
@@ -37836,6 +37888,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &883140194
 AudioSource:
@@ -38125,6 +38180,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &886185846
 AudioSource:
@@ -39021,6 +39079,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &901808403
 AudioSource:
@@ -40217,6 +40278,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &942775583
 AudioSource:
@@ -42607,6 +42671,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1002722621
 AudioSource:
@@ -43450,6 +43517,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+      propertyPath: useRoomManager
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: linkedDoors.Array.size
       value: 2
@@ -44906,6 +44977,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2889207164728854578, guid: 9b52dc8c20bec0b449d5a901b5485762, type: 3}
   m_PrefabInstance: {fileID: 1061020150}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1062384638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062384640}
+  - component: {fileID: 1062384639}
+  m_Layer: 0
+  m_Name: RoomButtonManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1062384639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062384638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc956b2a553b56443982a47922f56e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomManager
+  buttons:
+  - {fileID: 262183426}
+  - {fileID: 2106568342}
+  - {fileID: 1357679434}
+  - {fileID: 1733005780}
+  linkedDoors:
+  - {fileID: 1077960431}
+  - {fileID: 1077960428}
+  - {fileID: 1576339007}
+  - {fileID: 1576339004}
+--- !u!4 &1062384640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062384638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 943, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1065564641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45487,6 +45612,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1073878292
 AudioSource:
@@ -48090,6 +48218,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1124936373
 AudioSource:
@@ -51001,6 +51132,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1182361661
 AudioSource:
@@ -53779,6 +53913,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1247211908
 AudioSource:
@@ -54444,6 +54581,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1255263251
 AudioSource:
@@ -57423,6 +57563,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1321147489
 AudioSource:
@@ -58780,6 +58923,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2229999132747540000, guid: 08c54c0d27011994c920963e4f6751d4, type: 3}
   m_PrefabInstance: {fileID: 1353328024}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1357679434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+  m_PrefabInstance: {fileID: 550714613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51dd7c2409731224cbaf43c4cdd5f633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1358357180
 GameObject:
   m_ObjectHideFlags: 0
@@ -59694,6 +59848,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1386152259
 AudioSource:
@@ -64221,6 +64378,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1516493597
 AudioSource:
@@ -71989,6 +72149,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &1733005780 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+  m_PrefabInstance: {fileID: 1031365671}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51dd7c2409731224cbaf43c4cdd5f633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1736161827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74234,6 +74405,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1804275654
 AudioSource:
@@ -77894,6 +78068,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1877849442
 AudioSource:
@@ -78401,6 +78578,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+      propertyPath: useRoomManager
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
       propertyPath: linkedDoors.Array.size
       value: 2
@@ -81260,6 +81441,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1942237460
 AudioSource:
@@ -83961,7 +84145,7 @@ Transform:
   m_GameObject: {fileID: 1996904000}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 15.333335, z: -4}
+  m_LocalPosition: {x: 0, y: 15.333335, z: -4.08}
   m_LocalScale: {x: 20, y: 1, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83982,6 +84166,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &1996904003
 AudioSource:
@@ -84099,8 +84286,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.009905561, y: 1.8293966, z: 17.424904}
-  m_Center: {x: -0.767, y: -4, z: 0.66999996}
+  m_Size: {x: 0.009905625, y: 1.6183612, z: 16.565472}
+  m_Center: {x: -0.767, y: -4.1055193, z: 0.24028382}
 --- !u!23 &1996904005
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86013,6 +86200,9 @@ MonoBehaviour:
   ColorOn: {fileID: 2100000, guid: fc651e45f096fef409d9e255709ac1bc, type: 2}
   ColorOff: {fileID: -1197575552671703079, guid: 5dd8dc38d9770b34f8db88617297f5ae, type: 3}
   linkedDoors: []
+  manager: {fileID: 0}
+  buttonIndex: 0
+  useRoomManager: 0
   mySound: {fileID: 8300000, guid: 3e597ee6c6b689f438e7fd4e7fff84ce, type: 3}
 --- !u!82 &2067010857
 AudioSource:
@@ -88283,6 +88473,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106548907}
   m_Mesh: {fileID: 4300000, guid: 8c9b5f068404c544a820bdbeaebf5a41, type: 3}
+--- !u!114 &2106568342 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1997256044870995261, guid: 8960c4cadb55b434a8624cdea3598e95, type: 3}
+  m_PrefabInstance: {fileID: 165331685}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51dd7c2409731224cbaf43c4cdd5f633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2111157607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90736,3 +90937,4 @@ SceneRoots:
   - {fileID: 34564693}
   - {fileID: 932353730}
   - {fileID: 220906061}
+  - {fileID: 1062384640}
