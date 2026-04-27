@@ -8,6 +8,7 @@ TagManager:
   - BALL
   - AIMHERE
   - SLIDINGBLOCK
+  - CUBE
   layers:
   - Default
   - TransparentFX
