@@ -13,6 +13,7 @@ public class GRAVITY : MonoBehaviour {
     public AudioSource audioSource;
     public AudioClip flipUpSound;
     public AudioClip flipDownSound;
+    public bool canFlipGravity = true;
 
     private void Start() {
         is_upside_down = false;
@@ -25,7 +26,7 @@ public class GRAVITY : MonoBehaviour {
 
     private void Update() {
         
-        if (Input.GetKeyDown(KeyCode.Space) && flip_timer <= 0.0f && isGrounded) { 
+        if (canFlipGravity && Input.GetKeyDown(KeyCode.Space) && flip_timer <= 0.0f && isGrounded) { 
             FlipGravity();
         }
 
