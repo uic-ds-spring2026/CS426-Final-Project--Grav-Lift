@@ -77,7 +77,7 @@ public class TurretPlayerTracking : MonoBehaviour {
         Vector3 dir = player.position - turret.position;
 
         // get the rotation to look at the player
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Quaternion lookRotation = Quaternion.LookRotation(dir, turret.parent.up);
 
         // rotate to the player
         turret.rotation = Quaternion.RotateTowards(

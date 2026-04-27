@@ -14,12 +14,14 @@ public class MissilePathfinding : MonoBehaviour
     public float alertDistance = 10f; 
 
     public int missileDamage = 25; 
+    public GameObject explosionPrefab;
 
     void Start()
     {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null) {
-            target = playerObj.transform;
+        PlayerMovement player = FindAnyObjectByType<PlayerMovement>();
+        
+        if (player != null) {
+            target = player.transform;
         }
         
         rb = GetComponent<Rigidbody>();
@@ -58,14 +60,16 @@ public class MissilePathfinding : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        PlayerMovement playerScript = collision.gameObject.GetComponentInParent<PlayerMovement>();
+        
+        if (playerScript != null)
         {
-            PlayerMovement playerScript = collision.gameObject.GetComponentInParent<PlayerMovement>();
-            
-            if (playerScript != null)
-            {
-                playerScript.TakeDamage(missileDamage);
-            }
+            playerScript.TakeDamage(missileDamage);
+        }
+
+        if (explosionPrefab != null) 
+        {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         }
 
         Destroy(gameObject);
