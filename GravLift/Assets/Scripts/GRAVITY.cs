@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class GravityFlip : MonoBehaviour {
-    private bool upside_down = false;
+public class GRAVITY : MonoBehaviour {
+    private bool is_upside_down;
     private float flip_duration = 0.5f;
     private float flip_timer = 0.0f;
     private GameObject player;
@@ -11,9 +11,12 @@ public class GravityFlip : MonoBehaviour {
     private Transform cameraPivot;
 
     private void Start() {
+        is_upside_down = false;
         player = this.gameObject;
         cameraPivot = GameObject.Find("CameraPivot").transform;
         isGrounded = true;
+        flip_duration = 0.5f;
+        flip_timer = 0.0f;
     }
 
     private void Update() {
@@ -53,7 +56,7 @@ public class GravityFlip : MonoBehaviour {
             raycastDirections = new Vector3[] { Vector3.down, Vector3.up };
         }
 
-        Vector3 origin = transform.position + (upside_down ? Vector3.down : Vector3.up) * 0.1f;  // Offset from origin according to gravity direction
+        Vector3 origin = transform.position + (is_upside_down ? Vector3.down : Vector3.up) * 0.1f;  // Offset from origin according to gravity direction
 
         foreach (Vector3 direction in raycastDirections) {
             if (Physics.Raycast(origin, direction, out hit, checkDistance)) {
@@ -67,7 +70,7 @@ public class GravityFlip : MonoBehaviour {
 
         //Now we move onto the actual gravity flip
         Physics.gravity = -Physics.gravity;
-        upside_down = !upside_down;
+        is_upside_down = !is_upside_down;
         flip_timer = flip_duration;
 
         player.GetComponent<PlayerMovement>().gravityFlipped = true; //used in player movement to restrict air movement
@@ -82,7 +85,7 @@ public class GravityFlip : MonoBehaviour {
             rb.position += -gravityDir * 0.05f;
 
             startRotation = player.transform.rotation;
-            Vector3 upDir = upside_down ? Vector3.down : Vector3.up;
+            Vector3 upDir = is_upside_down ? Vector3.down : Vector3.up;
             targetRotation = Quaternion.LookRotation(player.transform.forward, upDir);
         }
     }
@@ -126,5 +129,13 @@ public class GravityFlip : MonoBehaviour {
 
     private void OnCollisionExit(Collision collision) {
         isGrounded = false;
+    }
+
+    /// <summary>
+    /// getter function for is_upside_down
+    /// </summary>
+    /// <returns> is_upside_down </returns>
+    public bool IsUpsideDown() {
+        return is_upside_down;
     }
 }
