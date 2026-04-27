@@ -50,5 +50,19 @@ namespace InteractiveObjects.PressurePlates
                 }
             }
         }
+
+
+        private void OnTriggerEnter(Collider other)
+        {
+            // Visual and audio feedback for the plate
+            pressurePlateRenderer.material = ColorOn;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            // Reset the plate visually
+            pressurePlateRenderer.material = ColorOff;
+
+        }
     }
 }
