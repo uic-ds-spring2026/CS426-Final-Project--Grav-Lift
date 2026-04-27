@@ -10,6 +10,11 @@ public class GRAVITY : MonoBehaviour {
     private bool isGrounded;
     private Transform cameraPivot;
 
+    public AudioSource audioSource;
+    public AudioClip flipUpSound;
+    public AudioClip flipDownSound;
+    public bool canFlipGravity = true;
+
     private void Start() {
         is_upside_down = false;
         player = this.gameObject;
@@ -21,7 +26,7 @@ public class GRAVITY : MonoBehaviour {
 
     private void Update() {
         
-        if (Input.GetKeyDown(KeyCode.Space) && flip_timer <= 0.0f && isGrounded) { 
+        if (canFlipGravity && Input.GetKeyDown(KeyCode.Space) && flip_timer <= 0.0f && isGrounded) { 
             FlipGravity();
         }
 
@@ -72,6 +77,19 @@ public class GRAVITY : MonoBehaviour {
         Physics.gravity = -Physics.gravity;
         is_upside_down = !is_upside_down;
         flip_timer = flip_duration;
+
+        // if we have the audio source game object
+        if (audioSource != null) {
+
+            // check if they're upside down and that we have the sound effect, then play
+            if (is_upside_down && flipUpSound != null) {
+                audioSource.PlayOneShot(flipUpSound);
+
+            // otherwise check if it's the otherway around and the effect exists and use it if so
+            } else if (!is_upside_down && flipDownSound != null) {
+                audioSource.PlayOneShot(flipDownSound);
+            }
+        }
 
         player.GetComponent<PlayerMovement>().gravityFlipped = true; //used in player movement to restrict air movement
 

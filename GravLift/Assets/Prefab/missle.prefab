@@ -130,11 +130,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MisslePathfinding
   rotationSpeed: 200
-  speed: 10
+  speed: 15
   audioSource: {fileID: 1101210440283417160}
   closeProximitySound: {fileID: 8300000, guid: c81d557cbbf90a30093da0efe1a4279e, type: 3}
   alertDistance: 10
-  missileDamage: 25
+  missileDamage: 15
   explosionPrefab: {fileID: 0}
 --- !u!54 &7181406290069538632
 Rigidbody:
