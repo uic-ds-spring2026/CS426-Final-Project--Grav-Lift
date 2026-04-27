@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class GRAVITY : MonoBehaviour {
-    private bool is_upside_down = false;
+    private bool is_upside_down;
     private float flip_duration = 0.5f;
     private float flip_timer = 0.0f;
     private GameObject player;
@@ -11,9 +11,12 @@ public class GRAVITY : MonoBehaviour {
     private Transform cameraPivot;
 
     private void Start() {
+        is_upside_down = false;
         player = this.gameObject;
         cameraPivot = GameObject.Find("CameraPivot").transform;
         isGrounded = true;
+        flip_duration = 0.5f;
+        flip_timer = 0.0f;
     }
 
     private void Update() {

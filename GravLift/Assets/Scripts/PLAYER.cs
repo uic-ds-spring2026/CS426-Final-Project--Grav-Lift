@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -19,13 +20,14 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     [SerializeField] private float forward_bonus_speed;
     /// <summary>
-    /// the player's camera sensitivity while aiming down sights
+    /// the player's camera sensitivity percentage while aiming down sights
     /// </summary>
-    [SerializeField] private float camera_sensitivity_while_aiming;
+    [SerializeField] private float camera_sensitivity_percentage_while_aiming;
+    [SerializeField] private float default_camera_sensitivity;
     /// <summary>
-    /// the player's camera sensitivity while not aiming down sights
+    /// tracks the current camera sensitivity
     /// </summary>
-    [SerializeField] private float camera_sensitivity_while_not_aiming;
+    private float camera_sensitivity;
     /// <summary>
     /// the player's field of view while aiming down sights
     /// </summary>
@@ -67,10 +69,6 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     private bool on_ground;
     /// <summary>
-    /// tracks the current camera sensitivity
-    /// </summary>
-    private float camera_sensitivity;
-    /// <summary>
     /// holds the player's rigidbody
     /// </summary>
     private Rigidbody rb;
@@ -94,14 +92,14 @@ public class PlayerMovement : MonoBehaviour {
     /// holds the UI of the pause menu
     /// </summary>
     private PAUSEMENU pause_menu;
-    public bool gravityFlipped = false; // needs access from GravityFlip so this is a public variable
+    public bool gravityFlipped; // needs access from GravityFlip so this is a public variable
+    public GameObject death_screen;
     
 
     public void Start() {
         animation = GetComponent<Animator>();
         rotation_x = 0.0f;
         on_ground = true;
-        camera_sensitivity = camera_sensitivity_while_not_aiming;
         rb = GetComponent<Rigidbody>();
         t = GetComponent<Transform>();
         groundCollisionIds = new HashSet<int>();
@@ -109,10 +107,12 @@ public class PlayerMovement : MonoBehaviour {
         pause_menu = FindAnyObjectByType<PAUSEMENU>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        gravityFlipped = false;
     }
 
     public void Update() {
-        if (pause_menu != null && pause_menu.IsPaused()) {
+        if ((pause_menu != null && pause_menu.IsPaused())
+         || (death_screen != null && death_screen.activeSelf)) {
             return;
         }
         if (Keyboard.current != null) {
@@ -127,6 +127,11 @@ public class PlayerMovement : MonoBehaviour {
             } else {
                 StopAiming();
             }
+        }
+        // FOR TESTING PURPOSES ONLY
+        if (Input.GetKeyDown(KeyCode.P)){
+            TakeDamage(10);
+            Debug.Log("Health is now " + health);
         }
     }
 
@@ -257,23 +262,30 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Turn() {
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
-        float mouseX = mouseDelta.x * camera_sensitivity;
+        float mouseX = mouseDelta.x * camera_sensitivity / 2.0f;
         t.Rotate(Vector3.up * mouseX);
         
-        float mouseY = mouseDelta.y * camera_sensitivity;
+        float mouseY = mouseDelta.y * camera_sensitivity / 2.0f;
         rotation_x -= mouseY;
         rotation_x = Mathf.Clamp(rotation_x, -90.0f, 90.0f);
         player_camera.transform.localRotation = Quaternion.Euler(rotation_x, 0.0f, 0.0f);
     }
 
     private void Aim() {
-        camera_sensitivity = camera_sensitivity_while_aiming;
+        camera_sensitivity = default_camera_sensitivity * camera_sensitivity_percentage_while_aiming;
         player_camera.fieldOfView = fov_while_aiming;
     }
 
     private void StopAiming() {
-        camera_sensitivity = camera_sensitivity_while_not_aiming;
+        camera_sensitivity = default_camera_sensitivity;
         player_camera.fieldOfView = fov_while_not_aiming;
+    }
+
+    public float GetSens() {
+        return default_camera_sensitivity;
+    }
+    public void SetSens(float sens) {
+        default_camera_sensitivity = sens;
     }
 
     /// <summary>
@@ -288,13 +300,31 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     /// <summary>
-    /// kills and respawns the player
+    /// kills the player and shows the death screen
     /// </summary>
     public void Die() {
-        // perhaps add a death screeen?
-        t.position = spawn_point;
-        rb.linearVelocity = Vector3.zero;
-        health.ResetHealth();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0.0f;
+        if (death_screen != null) {
+            death_screen.SetActive(true);
+        }
+        AudioSource[] allAudioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (AudioSource audioS in allAudioSources) {
+            audioS.Pause();
+        }
+    }
+
+    /// <summary>
+    /// respawns the player at the beginning
+    /// </summary>
+    public void Respawn() {
+        Time.timeScale = 1.0f;
+        if (death_screen != null) {
+            death_screen.SetActive(false);
+        }
+        SceneManager.LoadScene("GAME");
+        Physics.gravity = new Vector3(0, -50f, 0);
     }
 
     private void SmallStepAssist(Vector3 moveDir) {

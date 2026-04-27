@@ -7,6 +7,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class PAUSEMENU : MonoBehaviour {
     /// <summary>
@@ -17,21 +19,53 @@ public class PAUSEMENU : MonoBehaviour {
     /// stores the pause screen canvas as a game object
     /// </summary>
     public GameObject pause_canvas;
+    public GameObject options_menu;
+    public GameObject controls_menu;
+    public GameObject loading_menu;
+    public GameObject death_screen;
+    public Slider volume_slider;
+    public TextMeshProUGUI volume_text;
+    public Slider sens_slider;
+    public TextMeshProUGUI sens_text;
+    public PlayerMovement player;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start() {
         is_paused = false;
         Time.timeScale = 1.0f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        float saved_volume = PlayerPrefs.GetFloat("GlobalVolume", 1.0f);
+        AudioListener.volume = saved_volume;
+        if (volume_slider != null) {
+            volume_slider.value = saved_volume;
+            UpdateVolumeText(saved_volume);
+            volume_slider.onValueChanged.AddListener(SetVolume);
+        }
+
+        float saved_sens = PlayerPrefs.GetFloat("MouseSensitivity", 0.5f);
+        if (player != null) {
+            player.SetSens(saved_sens);
+        }
+        if (sens_slider != null) {
+            sens_slider.value = saved_sens;
+            UpdateSensText(saved_sens);
+            sens_slider.onValueChanged.AddListener(SetSens);
+        }
     }
 
     // Update is called once per frame
     public void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (is_paused) {
-                Play();
-            } else {
+                if ((options_menu != null && options_menu.activeSelf)
+                 || (controls_menu != null && controls_menu.activeSelf)) {
+                    Back();
+                } else {
+                    Play();
+                }
+            } else if (!(death_screen != null && death_screen.activeSelf)
+                   || (loading_menu != null && loading_menu.activeSelf)) {
                 Pause();
             }
         }
@@ -46,6 +80,11 @@ public class PAUSEMENU : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         is_paused = false;
+
+        AudioSource[] allAudioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (AudioSource audioS in allAudioSources) {
+            audioS.UnPause();
+        }
     }
 
     /// <summary>
@@ -57,6 +96,24 @@ public class PAUSEMENU : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         is_paused = true;
+
+        AudioSource[] allAudioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (AudioSource audioS in allAudioSources) {
+            audioS.Pause();
+        }
+    }
+
+    public void Back()
+    {
+        if (options_menu != null) {
+            options_menu.SetActive(false);
+        }
+        if (controls_menu != null) {
+            controls_menu.SetActive(false);
+        }
+        if (pause_canvas != null) {
+            pause_canvas.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -72,5 +129,31 @@ public class PAUSEMENU : MonoBehaviour {
     /// <returns> whether the game is paused </returns>
     public bool IsPaused() {
         return is_paused;
+    }
+
+    public void SetVolume(float volume) {
+        AudioListener.volume = volume;
+        PlayerPrefs.SetFloat("GlobalVolume", volume);
+        UpdateVolumeText(volume);
+    }
+
+    private void UpdateVolumeText(float volume) {
+        if (volume_text != null) {
+            volume_text.text = "Volume: " + Mathf.RoundToInt(volume * 100) + "%";
+        }
+    }
+
+    public void SetSens(float sens) {
+        if (player != null) {
+            player.SetSens(sens);
+        }
+        PlayerPrefs.SetFloat("MouseSensitivity", sens);
+        UpdateSensText(sens);
+    }
+
+    private void UpdateSensText(float sens) {
+        if (sens_text != null) {
+            sens_text.text = "Sensitivity: " + sens.ToString("F2");
+        }
     }
 }

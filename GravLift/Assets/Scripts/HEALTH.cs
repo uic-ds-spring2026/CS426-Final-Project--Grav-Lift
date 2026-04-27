@@ -36,14 +36,6 @@ public class HEALTH : MonoBehaviour {
         UpdateUI();
     }
 
-    private void Update(){
-        // FOR TESTING PURPOSES ONLY
-        if (Input.GetKeyDown(KeyCode.P)){
-            TakeDamage(10);
-            Debug.Log("Health is now " + health);
-        }
-    }
-
     /// <summary>
     /// Updates the health bar and text
     /// </summary>
