@@ -1,2 +1,2 @@
 * implement basic movement by 3/27 (2 hours)
-* implement movement animations by 4/03 (4 hours)
+* implement movement animations by 4/03 (4 hours) 
