@@ -5,6 +5,8 @@ public partial class AlarmCollectible : MonoBehaviour
     public AudioSource alarmSiren;
     public Light[] levelLights; 
     public Color alarmLightColor = Color.red;
+    public GameObject winPrefab; 
+    public Transform spawnPoint;
 
     public DoorController[] linkedDoors; 
 
@@ -14,6 +16,10 @@ public partial class AlarmCollectible : MonoBehaviour
         
         if (player != null)
         {
+
+
+            
+            Instantiate(winPrefab, spawnPoint.position, spawnPoint.rotation);
             // disable gravity flipping
             GRAVITY gravityScript = player.GetComponent<GRAVITY>();
             if (gravityScript != null)
