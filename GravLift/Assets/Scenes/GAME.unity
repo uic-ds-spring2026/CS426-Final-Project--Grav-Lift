@@ -99699,6 +99699,41 @@ MonoBehaviour:
   - {fileID: 1459117937}
   - {fileID: 1459117936}
   alarmLightColor: {r: 1, g: 0, b: 0, a: 1}
+  linkedDoors:
+  - {fileID: 134868260}
+  - {fileID: 1324099109}
+  - {fileID: 1835893861}
+  - {fileID: 1806616806}
+  - {fileID: 419435069}
+  - {fileID: 1576339007}
+  - {fileID: 1077960431}
+  - {fileID: 849205458}
+  - {fileID: 1260680546}
+  - {fileID: 1827215519}
+  - {fileID: 425148083}
+  - {fileID: 2082119963}
+  - {fileID: 1101096701}
+  - {fileID: 1535269939}
+  - {fileID: 1952304198}
+  - {fileID: 1777739006}
+  - {fileID: 429447756}
+  - {fileID: 1324099106}
+  - {fileID: 614868108}
+  - {fileID: 1835893858}
+  - {fileID: 1806616803}
+  - {fileID: 1952304195}
+  - {fileID: 419435066}
+  - {fileID: 429447753}
+  - {fileID: 1101096698}
+  - {fileID: 1077960428}
+  - {fileID: 849205455}
+  - {fileID: 1777739003}
+  - {fileID: 2082119960}
+  - {fileID: 1827215516}
+  - {fileID: 1535269936}
+  - {fileID: 425148080}
+  - {fileID: 1576339004}
+  - {fileID: 1260680543}
 --- !u!65 &1987046554
 BoxCollider:
   m_ObjectHideFlags: 0
