@@ -1,14 +1,15 @@
 using UnityEngine;
 
-public class AlarmCollectible : MonoBehaviour
+public partial class AlarmCollectible : MonoBehaviour
 {
     public AudioSource alarmSiren;
     public Light[] levelLights; 
     public Color alarmLightColor = Color.red;
 
+    public DoorController[] linkedDoors; 
+
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the player touched the collectible
         PlayerMovement player = other.GetComponentInParent<PlayerMovement>();
         
         if (player != null)
@@ -26,7 +27,7 @@ public class AlarmCollectible : MonoBehaviour
                 alarmSiren.Play();
             }
 
-            // and set the lights red
+            // set the lights red
             foreach (Light light in levelLights)
             {
                 if (light != null)
@@ -35,7 +36,16 @@ public class AlarmCollectible : MonoBehaviour
                 }
             }
 
-            // remove the core since we obtained it.
+            // open every door
+            foreach (DoorController door in linkedDoors)
+            {
+                if (door != null)
+                {
+                    door.OpenDoor();
+                }
+            }
+
+            // remove the core
             Destroy(gameObject);
         }
     }
