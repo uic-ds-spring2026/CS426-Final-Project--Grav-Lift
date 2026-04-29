@@ -24,7 +24,6 @@ public class RoomButtonManager : MonoBehaviour
     {
         if (buttonIndex < 0 || buttonIndex >= buttonStates.Length)
         {
-            Debug.LogWarning("Invalid button index!");
             return;
         }
 
