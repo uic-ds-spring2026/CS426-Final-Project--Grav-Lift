@@ -10,6 +10,9 @@ namespace InteractiveObjects.PressurePlates
         public Material ColorOff;
 
         [SerializeField] private DoorController[] linkedDoors; 
+        [SerializeField] private RoomButtonManager manager;
+        [SerializeField] private int buttonIndex;
+        [SerializeField] private bool useRoomManager = false;
 
         private Renderer pressurePlateRenderer;
 
@@ -28,11 +31,16 @@ namespace InteractiveObjects.PressurePlates
             pressurePlateRenderer.material = ColorOn;
             audioSource.PlayOneShot(mySound);
 
-            foreach (DoorController door in linkedDoors)
+            if (useRoomManager && manager != null)
             {
-                if (door != null)
+                manager.SetButtonState(buttonIndex, true);
+            }
+            else
+            {
+                foreach (DoorController door in linkedDoors)
                 {
-                    door.OpenDoor();
+                    if (door != null)
+                        door.OpenDoor();
                 }
             }
         }
@@ -42,13 +50,32 @@ namespace InteractiveObjects.PressurePlates
             // Reset the plate visually
             pressurePlateRenderer.material = ColorOff;
 
-            foreach (DoorController door in linkedDoors)
+            if (useRoomManager && manager != null)
             {
-                if (door != null)
+                manager.SetButtonState(buttonIndex, false);
+            }
+            else
+            {
+                foreach (DoorController door in linkedDoors)
                 {
-                    door.CloseDoor();
+                    if (door != null)
+                        door.CloseDoor();
                 }
             }
+        }
+
+
+        private void OnTriggerEnter(Collider other)
+        {
+            // Visual and audio feedback for the plate
+            pressurePlateRenderer.material = ColorOn;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            // Reset the plate visually
+            pressurePlateRenderer.material = ColorOff;
+
         }
     }
 }
